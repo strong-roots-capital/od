@@ -23,54 +23,33 @@ few more years...
 
 Don't over-dose on the existing headaches, say hello to `od`!
 
-<img align="right" src="img/oh-dee.jpg" height="200px" style="padding-left: 20px">
+<img align="right" src="img/oh-dee.jpg" height="275" style="padding-left: 20px">
 
 `od`, the one date library required.
 
 It's
 
 - immutable
-
     Every function returns a new Date object
-
 - consistent
-
     UTC everywhere. Let's all just ignore everything else.
-
 - fast
-
     As fast as you can get with the core libraries
-
 - transparent
-
     No custom objects representing Date values
-
 - simple
-
     Each function has one job and does it well
-
 - tested
-
     100% code coverage
-
 - maintained
-
     Maintenance becomes simple when scope is kept minimal
-
 - documented
-
     On this very readme
-
 - curried
-
     All functions support partial-application
-
 - dependency-free
-
     Zero dependencies were used in the making of this library
-
 - efficient
-
     [Rollup](https://github.com/rollup/rollup) ensures the smallest code-size and fastest load-times
 
 
