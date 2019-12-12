@@ -10,7 +10,7 @@ export default {
         'src/get.ts'
     ],
     output: {
-        dir: 'dist',
+        dir: 'lib',
         format: 'cjs'
     },
     plugins: [

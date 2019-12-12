@@ -2,8 +2,8 @@
   "name": "od",
   "version": "0.0.1",
   "description": "Oh dear, another date library",
-  "main": "dist/src/od.js",
-  "types": "dist/src/od.d.ts",
+  "main": "lib/od.js",
+  "types": "lib/od.d.ts",
   "scripts": {
     "prepublishOnly": "npm run clean && npm run compile",
     "compile": "tsc",
@@ -53,7 +53,7 @@
     "typescript": "^3.7.2"
   },
   "files": [
-    "dist/src/"
+    "lib/"
   ],
   "ava": {
     "compileEnhancements": false,
