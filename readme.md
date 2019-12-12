@@ -99,8 +99,8 @@ Rules:
   - `'YYYY-MM-DD'`
   - `'YYYY-MM-DDTHH:MM:SS'`
 - `DateDescriptor` properties default to beginning-of-interval when unspecified
-  - `{year: 2000, date: 25}` => `'2000-01-25`
-  - `{year: 2000, month: 1, date: 14, hour: 12, minute: 45, second: 0, millisecond: 0}` => `'2000-02-14T12:45:00`
+  - `{year: 2000, date: 25}` => `'2000-01-25T00:00:00.000Z'`
+  - `{year: 2000, month: 1, date: 14, hour: 12, minute: 45, second: 0, millisecond: 0}` => `'2000-02-14T12:45:00.000Z'`
 
 With `DateDescriptor`s note that all fields are UTC time so months are
 zero-indexed.

@@ -25,13 +25,7 @@ function _addYear(amount: number, date: Date): Date {
   return clone
 }
 
-/**
- * This is a test for typedoc
- */
 const add = curry(
-    /**
-     * This is a different test for typedoc
-     */
     function add(
         unit:
             | 'millisecond'
