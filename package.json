@@ -1,0 +1,85 @@
+{
+  "name": "od",
+  "version": "0.0.1",
+  "description": "Oh dear, another date library",
+  "main": "dist/src/od.js",
+  "types": "dist/src/od.d.ts",
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run compile",
+    "compile": "tsc",
+    "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
+    "clean": "rm -rf dist",
+    "ava": "ava -s -v",
+    "ava:fail-fast": "ava -s -v --fail-fast",
+    "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
+    "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
+    "lint": "eslint --ext ts .",
+    "lint:fix": "eslint --ext ts --fix .",
+    "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
+    "test": "nyc ava",
+    "test:tap": "nyc ava --tap | tap-nyc",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
+    "push-with-tags": "git push origin master && git push origin --tags",
+    "push-and-publish": "npm run push-with-tags && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strong-roots-capital/od.git"
+  },
+  "keywords": [
+    "date"
+  ],
+  "author": "Eric Crosson <eric.s.crosson@utexas.edu> (https://github.com/strong-roots-capital)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/strong-roots-capital/od/issues"
+  },
+  "homepage": "https://github.com/strong-roots-capital/od",
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^2.0.1",
+    "@types/node": "^12.12.7",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "ava": "^2.4.0",
+    "codecov": "^3.1.0",
+    "eslint": "^6.6.0",
+    "nyc": "^14.1.0",
+    "rollup": "^1.27.10",
+    "tap-nyc": "^1.0.3",
+    "ts-node": "^8.5.2",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.2"
+  },
+  "files": [
+    "dist/src/"
+  ],
+  "ava": {
+    "compileEnhancements": false,
+    "files": [
+      "!dist/**/*.d.ts",
+      "test/**/test-*.ts"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "src/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
