@@ -2,9 +2,56 @@
 
 > Oh dear, another date library
 
-## Goals / Why Bother
+## Why Bother
 
-<!-- TODO: be funny here -->
+Need a date library?
+
+There's [moment](https://github.com/moment/moment), so big and so slow
+it'll make continental-drift look snappy. Or
+[js-joda](https://github.com/js-joda/js-joda), an imperative library
+with its own custom parsing! Doesn't that sound fun. Then there's
+[dayjs](https://github.com/iamkun/dayjs), an imperative library that
+keeps data in its own custom objects like `moment`. Next up is
+[date-fns](https://github.com/date-fns/date-fns), that only offers
+separate methods for incrementing a date by different units of
+time. Talk about crimping your polymorphic style. Maybe you're more of
+a functional programmer, so you'd reach for
+[date-fp](https://github.com/cullophid/date-fp), until you find it's
+unmaintained and inconsistent with time-zones. There are plenty more
+date libraries, maybe you'll find a good fit if you keep looking for a
+few more years...
+
+Don't over-dose on the existing headaches, say hello to `od`!
+
+<img align="right" src="img/oh-dee.jpg" style="padding-left: 20px">
+
+`od`, the one date library required.
+
+It's
+
+- immutable
+  Every function returns a new Date object
+- consistent
+  UTC everywhere. Let's all just ignore everything else.
+- fast
+  As fast as you can get with the core libraries
+- transparent
+  No custom objects representing Date values
+- simple
+  Each function has one job and does it well
+- tested
+  100% code coverage
+- maintained
+  Maintenance becomes simple when scope is kept minimal
+- documented
+  On this very readme
+- curried
+  All functions support partial-application
+- dependency-free
+  Zero dependencies were used in the making of this library
+- efficient
+  [Rollup](https://github.com/rollup/rollup) ensures the smallest code-size and fastest load-times
+
 
 ## Install
 
