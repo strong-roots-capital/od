@@ -23,7 +23,7 @@ few more years...
 
 Don't over-dose on the existing headaches, say hello to `od`!
 
-<img align="right" src="img/oh-dee.jpg" style="padding-left: 20px">
+<img align="right" src="img/oh-dee.jpg" height="200px" style="padding-left: 20px">
 
 `od`, the one date library required.
 
