@@ -63,9 +63,16 @@ npm install od
 
 ```typescript
 import D from 'od'
-// TODO: describe usage
+
+const start = D.of(Date.now())
+const end = D.add('day', 1, start)
 ```
 
+Or just import the functions you need
+
+``` typescript
+import { add } from 'od/lib/add'
+```
 
 ## Documentation
 
@@ -85,7 +92,7 @@ of :: DateDescriptor -> Date
 
 Creates a Date object representing the specified date.
 
-``` javascript
+``` typescript
 D.of(0)                      //=> 1970-01-01T00:00:00.000Z
 D.of('1912-04-15')           //=> 1912-04-15T00:00:00.000Z
 D.of('1969-07-20T20:17:00')  //=> 1969-07-20T20:17:00.000Z
@@ -120,7 +127,7 @@ add :: UnitOfTime -> number -> Date -> Date
 Increments the given date by the specified number of time units, and
 returns a new Date with the new value.
 
-``` javascript
+``` typescript
 add('month', 2, D.of({year: 2000}))  //=> 2000-03-01T00:00:00.000Z
 ```
 
@@ -148,7 +155,7 @@ subtract :: UnitOfTime -> number -> Date -> Date
 Increments the given date by the specified number of time units, and
 returns a new Date with the new value.
 
-``` javascript
+``` typescript
 subtract('month', 2, D.of({year: 2000}))  //=> 1999-11-01T00:00:00.000Z
 ```
 
@@ -176,7 +183,7 @@ startOf :: ResetableUnitOfTime -> Date -> Date
 Reset a date back in time to the start of the specified time unit and
 returns a Date with the new value.
 
-``` javascript
+``` typescript
 startOf('year', D.of('1911-05-25'))  //=> 1911-01-01T00:00:00.000Z
 ```
 
@@ -204,7 +211,7 @@ get :: AccessibleUnitOfTime -> Date -> Date
 
 Returns the numeric value of the specified property of the supplied date.
 
-``` javascript
+``` typescript
 get('month', D.of('1945-11-05'))  //=> 10
 ```
 
@@ -226,5 +233,5 @@ where `unix` resolves to the number of milliseconds since the unix epoch.
 
 [ISC licensed](LICENSE)
 
-<!--  LocalWords:  hs javascript DateDescriptor YYYY startOf ResetableUnitOfTime -->
+<!--  LocalWords:  hs typescript DateDescriptor YYYY startOf ResetableUnitOfTime -->
 <!--  LocalWords:  AccessibleUnitOfTime -->
