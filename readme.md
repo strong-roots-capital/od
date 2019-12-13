@@ -163,14 +163,14 @@ add('month', 2, D.of({year: 2000}))  //=> 2000-03-01T00:00:00.000Z
 
 Supported time units:
 
-- millisecond
-- second
-- minute
-- hour
-- day
-- week
-- month
-- year
+- `millisecond`
+- `second`
+- `minute`
+- `hour`
+- `day`
+- `week`
+- `month`
+- `year`
 
 #### subtract
 
