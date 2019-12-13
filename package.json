@@ -1,76 +1,78 @@
 {
-  "name": "od",
-  "version": "0.0.1",
-  "description": "Oh dear, another date library",
-  "main": "lib/od.js",
-  "types": "lib/od.d.ts",
-  "scripts": {
-    "prepublishOnly": "npm run clean && npm run compile",
-    "compile": "rollup -c",
-    "clean": "rm -rf dist",
-    "ava": "ava -s -v",
-    "lint": "eslint --ext ts .",
-    "test": "nyc ava",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "push-with-tags": "git push origin master && git push origin --tags",
-    "push-and-publish": "npm run push-with-tags && npm publish"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/strong-roots-capital/od.git"
-  },
-  "keywords": [
-    "date"
-  ],
-  "author": "Eric Crosson <eric.s.crosson@utexas.edu> (https://github.com/strong-roots-capital)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/strong-roots-capital/od/issues"
-  },
-  "homepage": "https://github.com/strong-roots-capital/od",
-  "dependencies": {},
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^2.0.1",
-    "@types/node": "^12.12.7",
-    "@typescript-eslint/eslint-plugin": "^2.6.0",
-    "@typescript-eslint/parser": "^2.6.0",
-    "ava": "^2.4.0",
-    "codecov": "^3.1.0",
-    "eslint": "^6.6.0",
-    "nyc": "^14.1.0",
-    "rollup": "^1.27.10",
-    "ts-node": "^8.5.2",
-    "tslib": "^1.10.0",
-    "typescript": "^3.7.2"
-  },
-  "files": [
-    "lib/"
-  ],
-  "ava": {
-    "compileEnhancements": false,
+    "name": "od",
+    "version": "0.0.1",
+    "description": "Oh dear, another date library",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "module": "lib/index.esm.js",
+    "scripts": {
+        "prepublishOnly": "npm run clean && npm run compile",
+        "compile": "rollup -c",
+        "clean": "rm -rf lib",
+        "ava": "ava -s -v",
+        "lint": "eslint --ext ts .",
+        "test": "nyc ava",
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+        "push-with-tags": "git push origin master && git push origin --tags",
+        "push-and-publish": "npm run push-with-tags && npm publish"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/strong-roots-capital/od.git"
+    },
+    "keywords": [
+        "date"
+    ],
+    "author": "Eric Crosson <eric.s.crosson@utexas.edu> (https://github.com/strong-roots-capital)",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/strong-roots-capital/od/issues"
+    },
+    "homepage": "https://github.com/strong-roots-capital/od",
+    "dependencies": {},
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^2.0.1",
+        "@types/node": "^12.12.7",
+        "@typescript-eslint/eslint-plugin": "^2.6.0",
+        "@typescript-eslint/parser": "^2.6.0",
+        "@wessberg/rollup-plugin-ts": "^1.1.83",
+        "ava": "^2.4.0",
+        "codecov": "^3.1.0",
+        "eslint": "^6.6.0",
+        "nyc": "^14.1.0",
+        "rollup": "^1.27.10",
+        "ts-node": "^8.5.2",
+        "tslib": "^1.10.0",
+        "typescript": "^3.7.2"
+    },
     "files": [
-      "!dist/**/*.d.ts",
-      "test/**/test-*.ts"
+        "lib/"
     ],
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
-  },
-  "nyc": {
-    "include": [
-      "src/*.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "ava": {
+        "compileEnhancements": false,
+        "files": [
+            "!dist/**/*.d.ts",
+            "test/**/test-*.ts"
+        ],
+        "extensions": [
+            "ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
+    },
+    "nyc": {
+        "include": [
+            "src/*.ts"
+        ],
+        "extension": [
+            ".ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

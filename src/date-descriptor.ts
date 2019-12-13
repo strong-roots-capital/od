@@ -11,35 +11,15 @@ export type DateDescriptor =
 
 export type DateDescriptorArray = NonEmptyListOfNonEmptyList<number>
 
+
 export function isDateDescriptor(value: unknown): value is DateDescriptor {
-
-    function propertyDefinedIn<T extends object>(
-        value: T
-    ): (prop: string) => boolean {
-
-        return function propertyDefinedInObject(prop: string): boolean {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            return prop in value && (value as any)[prop] !== undefined
-        }
-    }
 
     if (typeof value !== 'object' || value === null) {
         return false
     }
 
-    const valueDefined = propertyDefinedIn(value)
-
-    /**
-     * Original test can be watered-down with logical refactoring
-     */
-    // return valueDefined('year') && valueDefined('month') && valueDefined('date') && valueDefined('hour') && valueDefined('minute') && valueDefined('second') && valueDefined('millisecond')
-    //     || valueDefined('year') && valueDefined('month') && valueDefined('date') && valueDefined('hour') && valueDefined('minute') && valueDefined('second')
-    //     || valueDefined('year') && valueDefined('month') && valueDefined('date') && valueDefined('hour') && valueDefined('minute')
-    //     || valueDefined('year') && valueDefined('month') && valueDefined('date') && valueDefined('hour')
-    //     || valueDefined('year') && valueDefined('month') && valueDefined('date')
-    //     || valueDefined('year') && valueDefined('month')
-    //     || valueDefined('year')
-    return valueDefined('year')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return 'year' in value && (value as any)['year'] !== undefined
 }
 
 export function asDateDescriptorArray(

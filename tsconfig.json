@@ -14,8 +14,9 @@
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
-        "outDir": "./dist",
+        "outDir": "./lib",
         "downlevelIteration": true,
+        "removeComments": true,
         "strict": true,
         "baseUrl": "./",
         "paths": {

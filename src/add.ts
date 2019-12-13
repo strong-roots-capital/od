@@ -1,4 +1,4 @@
-import { curry } from './curry'
+import { curry, Curry } from './curry'
 import { UnitOfTime } from './unit-of-time'
 import { parseNumber, parseDate, parseUnitOfTime } from './parse'
 
@@ -20,13 +20,13 @@ function _addMonth(amount: number, date: Date): Date {
 }
 
 function _addYear(amount: number, date: Date): Date {
-  const clone = new Date(date)
-  clone.setUTCFullYear(date.getUTCFullYear() + amount)
-  return clone
+    const clone = new Date(date)
+    clone.setUTCFullYear(date.getUTCFullYear() + amount)
+    return clone
 }
 
-const add = curry(
-    function add(
+const add: Curry<
+    (
         unit:
             | 'millisecond'
             | 'second'
@@ -38,21 +38,28 @@ const add = curry(
             | 'year',
         amount: number,
         date: Date
-    ): Date {
+    ) => Date
+    > = curry(
+        function add(
+            unit: UnitOfTime,
+            amount: number,
+            date: Date
+        ): Date {
 
-        parseUnitOfTime(unit)
-        parseNumber(amount)
-        parseDate(date)
+            parseUnitOfTime(unit)
+            parseNumber(amount)
+            parseDate(date)
 
-        switch (unit) {
-            case 'month':
-                return _addMonth(amount, date)
-            case 'year':
-                return _addYear(amount, date)
-            default:
-                return new Date(steps[unit] * amount + date.getTime())
+            switch (unit) {
+                case 'month':
+                    return _addMonth(amount, date)
+                case 'year':
+                    return _addYear(amount, date)
+                default:
+                    return new Date(steps[unit] * amount + date.getTime())
+            }
         }
-    }
-)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ) as any
 
 export { add }

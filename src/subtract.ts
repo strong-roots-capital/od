@@ -1,8 +1,9 @@
 import { add } from './add'
-import { curry } from './curry'
+import { curry, Curry } from './curry'
+import { UnitOfTime } from './unit-of-time'
 
-const subtract = curry(
-    function subtract(
+const subtract: Curry<
+    (
         unit:
             | 'millisecond'
             | 'second'
@@ -14,9 +15,17 @@ const subtract = curry(
             | 'year',
         amount: number,
         date: Date
-    ): Date {
-        return add(unit, -amount, date)
-    }
-)
+    ) => Date
+    > = curry(
+        function subtract(
+            unit: UnitOfTime,
+            amount: number,
+            date: Date
+        ): Date {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            return add(unit, -amount, date) as any
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ) as any
 
 export { subtract }

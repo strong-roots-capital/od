@@ -1,4 +1,12 @@
-# od [![Build status](https://travis-ci.org/strong-roots-capital/od.svg?branch=master)](https://travis-ci.org/strong-roots-capital/od) [![npm version](https://img.shields.io/npm/v/od.svg)](https://npmjs.org/package/od) [![codecov](https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg)](https://codecov.io/gh/strong-roots-capital/od)
+# od
+[![Build Status][]](https://travis-ci.org/strong-roots-capital/od)
+[![NPM Package][]](https://npmjs.org/package/od)
+[![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
+
+[Build Status]: https://travis-ci.org/strong-roots-capital/od.svg?branch=master
+[NPM Package]: https://img.shields.io/npm/v/od.svg
+[Code Coverage]: https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg
+
 
 > Oh dear, another date library
 
@@ -6,20 +14,22 @@
 
 Need a date library?
 
-There's [moment](https://github.com/moment/moment), so big and so slow
-it'll make continental-drift look snappy. Or
-[js-joda](https://github.com/js-joda/js-joda), an imperative library
-with its own custom parsing! Doesn't that sound fun. Then there's
-[dayjs](https://github.com/iamkun/dayjs), an imperative library that
-keeps data in its own custom objects like `moment`. Next up is
-[date-fns](https://github.com/date-fns/date-fns), that only offers
-separate methods for incrementing a date by different units of
-time. Talk about crimping your polymorphic style. Maybe you're more of
-a functional programmer, so you'd reach for
-[date-fp](https://github.com/cullophid/date-fp), until you find it's
-unmaintained and inconsistent with time-zones. There are plenty more
-date libraries, maybe you'll find a good fit if you keep looking for a
-few more years...
+There's [moment], so big and so slow it'll make continental-drift look
+snappy. Or [js-joda], an imperative library with its own custom
+parsing! Doesn't that sound fun. Then there's [dayjs], an imperative
+library that keeps data in its own custom objects like `moment`. Next
+up is [date-fns], that only offers separate methods for incrementing a
+date by different units of time. Talk about crimping your polymorphic
+style. Maybe you're more of a functional programmer, so you'd reach
+for [date-fp], until you find it's unmaintained and inconsistent with
+time-zones. There are plenty more date libraries, maybe you'll find a
+good fit if you keep looking for a few more years...
+
+[moment]: https://github.com/moment/moment
+[js-joda]: https://github.com/js-joda/js-joda
+[dayjs]: https://github.com/iamkun/dayjs
+[date-fns]: https://github.com/date-fns/date-fns
+[date-fp]: https://github.com/cullophid/date-fp
 
 Don't over-dose on the existing headaches, say hello to `od`!
 
@@ -75,6 +85,26 @@ import { add } from 'od/lib/add'
 ```
 
 ## Documentation
+
+<details><summary>Creating new Dates</summary>
+
+- [`of`: Create a new Date from existing information](#of)
+
+</details>
+
+<details><summary>Transforming Dates</summary>
+
+- [`add`: Add a time unit to a Date](#add)
+- [`subtract`: Subtract a time unit from a Date](#subtract)
+- [`startOf`: Wind a Date back to the start of specified time unit](#startOf)
+
+</details>
+
+<details><summary>Accessing properties of Dates</summary>
+
+- [`get`: Access one field of an existing Date](#get)
+
+</details>
 
 ### Creating Dates
 
@@ -161,14 +191,14 @@ subtract('month', 2, D.of({year: 2000}))  //=> 1999-11-01T00:00:00.000Z
 
 Supported time units:
 
-- millisecond
-- second
-- minute
-- hour
-- day
-- week
-- month
-- year
+- `millisecond`
+- `second`
+- `minute`
+- `hour`
+- `day`
+- `week`
+- `month`
+- `year`
 
 #### startOf
 
@@ -189,13 +219,13 @@ startOf('year', D.of('1911-05-25'))  //=> 1911-01-01T00:00:00.000Z
 
 Supported time units:
 
-- second
-- minute
-- hour
-- day
-- week
-- month
-- year
+- `second`
+- `minute`
+- `hour`
+- `day`
+- `week`
+- `month`
+- `year`
 
 ### Accessing dates
 
@@ -217,15 +247,15 @@ get('month', D.of('1945-11-05'))  //=> 10
 
 Supported time units:
 
-- millisecond
-- second
-- minute
-- hour
-- day
-- date
-- month
-- year
-- unix
+- `millisecond`
+- `second`
+- `minute`
+- `hour`
+- `day`
+- `date`
+- `month`
+- `year`
+- `unix`
 
 where `unix` resolves to the number of milliseconds since the unix epoch.
 
@@ -234,4 +264,4 @@ where `unix` resolves to the number of milliseconds since the unix epoch.
 [ISC licensed](LICENSE)
 
 <!--  LocalWords:  hs typescript DateDescriptor YYYY startOf ResetableUnitOfTime -->
-<!--  LocalWords:  AccessibleUnitOfTime -->
+<!--  LocalWords:  od AccessibleUnitOfTime joda dayjs fns -->
