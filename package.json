@@ -1,6 +1,6 @@
 {
     "name": "od",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Oh dear, another date library",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
