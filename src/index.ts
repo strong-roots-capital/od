@@ -8,6 +8,7 @@ import { get } from './get'
 import { add } from './add'
 import { subtract } from './subtract'
 import { startOf } from './start-of'
+import { distance } from './distance'
 
 
 interface D {
@@ -16,6 +17,7 @@ interface D {
     subtract: typeof subtract;
     get: typeof get;
     startOf: typeof startOf;
+    distance: typeof distance;
 }
 
 
@@ -24,9 +26,11 @@ const D: D = {
     add,
     subtract,
     get,
-    startOf
+    startOf,
+    distance
 }
 
 export default D
+
 
 //  LocalWords:  od

@@ -4,6 +4,7 @@ import {
     ResetableUnitOfTime
 } from './unit-of-time'
 
+
 export function parseNumber(value: unknown): number {
     if (typeof value === 'number') {
         return value
