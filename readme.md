@@ -100,6 +100,12 @@ import { add } from 'od/lib/add'
 
 </details>
 
+<details><summary>Combining Dates</summary>
+
+- [`distance`: Calculate the number of time-units between two dates](#distance)
+
+</details>
+
 <details><summary>Accessing properties of Dates</summary>
 
 - [`get`: Access one field of an existing Date](#get)
@@ -227,7 +233,36 @@ Supported time units:
 - `month`
 - `year`
 
-### Accessing dates
+### Combining Dates
+
+#### distance
+
+<details><summary><code>distance :: UnitOfTime -> Date -> Date -> number</code></summary>
+
+``` hs
+distance :: UnitOfTime -> Date -> Date -> number
+```
+
+</details>
+
+Returns the number of time-units between the first date and the second.
+
+``` typescript
+distance('month', D.of('1914-07-11'), D.of('1939-09-01'))  //=> 302
+```
+
+Supported time units:
+
+- `millisecond`
+- `second`
+- `minute`
+- `hour`
+- `day`
+- `week`
+- `month`
+- `year`
+
+### Accessing Dates
 
 #### get
 
@@ -264,4 +299,4 @@ where `unix` resolves to the number of milliseconds since the unix epoch.
 [ISC licensed](LICENSE)
 
 <!--  LocalWords:  hs typescript DateDescriptor YYYY startOf ResetableUnitOfTime -->
-<!--  LocalWords:  od AccessibleUnitOfTime joda dayjs fns -->
+<!--  LocalWords:  od AccessibleUnitOfTime UnitOfTime joda dayjs fns -->
