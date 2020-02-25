@@ -50,7 +50,7 @@ It's
 - fast
     - As fast as you can get with the core libraries
 - transparent
-    - Uses standard [JavaScript Date] objects instead of custom objects
+    - Uses standard [JavaScript Date] objects everywhere
 - simple
     - Each function has one job and does it well
 - tested
