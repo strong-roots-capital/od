@@ -67,7 +67,7 @@ It's
     - [Rollup] ensures the smallest code-size and fastest load-times
 
 [JavaScript Date]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-[readme]: readme.md#documentation
+[readme]: #documentation
 [partial-application]: https://en.wikipedia.org/wiki/Partial_application
 [Rollup]: https://github.com/rollup/rollup
 [Zero dependencies]: https://david-dm.org/strong-roots-capital/od
