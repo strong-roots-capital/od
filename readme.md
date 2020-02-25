@@ -37,7 +37,7 @@ Don't over-dose on the existing headaches, say hello to `od`!
 
 <img align="right" src="img/oh-dee.jpg" height="275" style="padding-left: 20px">
 
-`od`, the one date library required.
+`od`, the one date library required. (Pronounced "oh dee".)
 
 It's
 
@@ -302,3 +302,4 @@ where `unix` resolves to the number of milliseconds since the unix epoch.
 
 <!--  LocalWords:  hs typescript DateDescriptor YYYY startOf ResetableUnitOfTime -->
 <!--  LocalWords:  od AccessibleUnitOfTime UnitOfTime joda dayjs fns -->
+<!--  LocalWords:  dee -->
