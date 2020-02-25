@@ -18,12 +18,13 @@ Need a date library?
 
 There's [moment], so big and so slow it'll make continental-drift look
 snappy. Or [js-joda], an imperative library with its own custom
-parsing! Doesn't that sound fun. Then there's [dayjs], an imperative
-library that keeps data in its own custom objects like `moment`. Next
-up is [date-fns], that only offers separate methods for incrementing a
-date by different units of time. Talk about crimping your polymorphic
-style. Maybe you're more of a functional programmer, so you'd reach
-for [date-fp], until you find it's unmaintained and inconsistent with
+parsing! Doesn't that sound like a Good Idea™. Then there's [dayjs],
+an imperative library that keeps data in its own custom objects like
+[moment].... making [tree-shaking] impossible. Next up is [date-fns],
+that only offers separate methods for incrementing a date by different
+units of time. Talk about crimping your polymorphic style. Maybe
+you're more of a functional programmer, so you'd reach for [date-fp],
+until you find it's unmaintained and inconsistent with
 time-zones. There are plenty more date libraries, maybe you'll find a
 good fit if you keep looking for a few more years...
 
@@ -32,6 +33,7 @@ good fit if you keep looking for a few more years...
 [dayjs]: https://github.com/iamkun/dayjs
 [date-fns]: https://github.com/date-fns/date-fns
 [date-fp]: https://github.com/cullophid/date-fp
+[tree-shaking]: https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking
 
 Don't over-dose on the existing headaches, say hello to `od`!
 
@@ -48,7 +50,7 @@ It's
 - fast
     - As fast as you can get with the core libraries
 - transparent
-    - No custom objects representing Date values
+    - Uses standard [JavaScript Date] objects instead of custom objects
 - simple
     - Each function has one job and does it well
 - tested
@@ -56,14 +58,19 @@ It's
 - maintained
     - Maintenance becomes simple when scope is kept minimal
 - documented
-    - On this very readme
+    - On this very [readme]
 - curried
-    - All functions support partial-application
+    - All functions support [partial-application]
 - dependency-free
-    - Zero dependencies were used in the making of this library
+    - [Zero dependencies] were used in the making of this library
 - efficient
-    - [Rollup](https://github.com/rollup/rollup) ensures the smallest code-size and fastest load-times
+    - [Rollup] ensures the smallest code-size and fastest load-times
 
+[JavaScript Date]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+[readme]: readme.md#documentation
+[partial-application]: https://en.wikipedia.org/wiki/Partial_application
+[Rollup]: https://github.com/rollup/rollup
+[Zero dependencies]: https://david-dm.org/strong-roots-capital/od
 
 ## Install
 
