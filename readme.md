@@ -2,10 +2,12 @@
 [![Build Status][]](https://travis-ci.org/strong-roots-capital/od)
 [![NPM Package][]](https://npmjs.org/package/od)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
+[![Dependencies][]](https://david-dm.org/strong-roots-capital/od)
 
 [Build Status]: https://travis-ci.org/strong-roots-capital/od.svg?branch=master
 [NPM Package]: https://img.shields.io/npm/v/od.svg
 [Code Coverage]: https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg
+[Dependencies]: https://david-dm.org/strong-roots-capital/od/status.svg
 
 
 > Oh dear, another date library
