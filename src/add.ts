@@ -1,6 +1,6 @@
 import { curry, Curry } from './curry'
-import { UnitOfTime } from './unit-of-time'
-import { parseNumber, parseDate, parseUnitOfTime } from './parse'
+import { parseNumber, parseDate} from './parse'
+import { UnitOfTime, unitsOfTime  } from './unit-of-time'
 
 const steps: Record<UnitOfTime, number> = {
     millisecond: 1,
@@ -46,7 +46,6 @@ const add: Curry<
             date: Date
         ): Date {
 
-            parseUnitOfTime(unit)
             parseNumber(amount)
             parseDate(date)
 
@@ -55,11 +54,22 @@ const add: Curry<
                     return _addMonth(amount, date)
                 case 'year':
                     return _addYear(amount, date)
-                default:
+
+                case 'millisecond':
+                case 'second':
+                case 'minute':
+                case 'hour':
+                case 'day':
+                case 'week':
                     return new Date(steps[unit] * amount + date.getTime())
+
+                default:
+                    throw new Error(`Expected argument 'unit' to be of type '${unitsOfTime.join(' | ')}'`)
             }
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ) as any
 
 export { add }
+
+//  LocalWords:  unitOfTime

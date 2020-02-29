@@ -1,6 +1,6 @@
 import { curry, Curry } from './curry'
-import { AccessibleUnitOfTime } from './unit-of-time'
-import { parseDate, parseAccessibleUnitOfTime } from './parse'
+import { parseDate} from './parse'
+import { AccessibleUnitOfTime, accessibleUnitsOfTime  } from './unit-of-time'
 
 const get: Curry<
     (
@@ -22,7 +22,6 @@ const get: Curry<
             date: Date
         ): number {
 
-            parseAccessibleUnitOfTime(unit)
             parseDate(date)
 
             switch (unit) {
@@ -44,9 +43,13 @@ const get: Curry<
                     return date.getUTCFullYear()
                 case 'unix':
                     return date.getTime()
+                default:
+                    throw new Error(`Expected argument 'unit' to be of type '${accessibleUnitsOfTime.join(' | ')}'`)
             }
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ) as any
 
 export { get }
+
+//  LocalWords:  AccessibleUnitOfTime

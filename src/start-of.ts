@@ -1,6 +1,6 @@
 import { curry, Curry } from './curry'
-import { ResetableUnitOfTime } from './unit-of-time'
-import { parseDate, parseResetableUnitOfTime } from './parse'
+import { parseDate } from './parse'
+import { ResetableUnitOfTime, resetableUnitsOfTime  } from './unit-of-time'
 
 const startOf: Curry<
     (
@@ -20,7 +20,6 @@ const startOf: Curry<
             date: Date
         ): Date {
 
-            parseResetableUnitOfTime(unit)
             parseDate(date)
 
             const clone = new Date(date)
@@ -50,9 +49,13 @@ const startOf: Curry<
                     clone.setUTCHours(0, 0, 0, 0)
                     clone.setUTCMonth(0, 1)
                     return clone
+                default:
+                    throw new Error(`Expected argument 'unit' to be of type '${resetableUnitsOfTime.join(' | ')}'`)
             }
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ) as any
 
 export { startOf }
+
+//  LocalWords:  ResetableUnitOfTime

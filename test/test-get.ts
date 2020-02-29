@@ -80,3 +80,7 @@ test('should support function currying', t => {
         getHours(start)
     )
 })
+
+test('should throw on unexpected unit', t => {
+    t.throws(() => get('nanosecond')(new Date()))
+})

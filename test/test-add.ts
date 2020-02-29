@@ -81,3 +81,7 @@ test('should support partial application of two arguments', t => {
         addOneYear(start)
     )
 })
+
+test('should throw on unexpected unit', t => {
+    t.throws(() => add('nanosecond')(1, new Date()))
+})

@@ -82,3 +82,7 @@ test('should find distance in milliseconds', t => {
         distance('millisecond', start, end)
     )
 })
+
+test('should throw on unexpected unit', t => {
+    t.throws(() => distance('nanosecond')(new Date(), new Date()))
+})

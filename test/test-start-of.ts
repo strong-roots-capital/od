@@ -98,3 +98,7 @@ test('should calculate date representing start of week (Sunday) when date is Sat
         startOf('week', new Date(Date.UTC(2000, 1, 12, 12, 34, 5, 60)))
     )
 })
+
+test('should throw on unexpected unit', t => {
+    t.throws(() => startOf('nanosecond')(new Date(Date.UTC(2000, 1, 12, 12, 34, 5, 60))))
+})

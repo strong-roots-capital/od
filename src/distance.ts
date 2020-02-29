@@ -1,7 +1,7 @@
 import { get } from './get'
 import { curry, Curry } from './curry'
-import { UnitOfTime } from './unit-of-time'
-import { parseDate, parseUnitOfTime } from './parse'
+import { parseDate} from './parse'
+import { UnitOfTime, unitsOfTime  } from './unit-of-time'
 
 const millisecondsPer: Record<UnitOfTime, number> = {
     millisecond: 1,
@@ -35,7 +35,6 @@ const distance: Curry<
             b: Date
         ): number {
 
-            parseUnitOfTime(unit)
             parseDate(a)
             parseDate(b)
 
@@ -45,11 +44,20 @@ const distance: Curry<
                 case 'month':
                     return (get('year', b) - get('year', a)) * 12 +
                         get('month', b) - get('month', a)
-                default:
+
+                case 'millisecond':
+                case 'second':
+                case 'minute':
+                case 'hour':
+                case 'day':
+                case 'week':
                     const milliseconds = b.getTime() - a.getTime()
                     return Math.round(
                         milliseconds / millisecondsPer[unit]
                     )
+
+                default:
+                    throw new Error(`Expected argument 'unit' to be of type '${unitsOfTime.join(' | ')}'`)
             }
 
         }
@@ -57,3 +65,5 @@ const distance: Curry<
     ) as any
 
 export { distance }
+
+//  LocalWords:  UnitOfTime
