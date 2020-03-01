@@ -52,6 +52,7 @@ const add: Curry<
             switch (unit) {
                 case 'month':
                     return _addMonth(amount, date)
+
                 case 'year':
                     return _addYear(amount, date)
 
