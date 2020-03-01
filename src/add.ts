@@ -1,17 +1,6 @@
 import { curry, Curry } from './curry'
 import { parseNumber, parseDate} from './parse'
-import { UnitOfTime, unitsOfTime  } from './unit-of-time'
-
-const steps: Record<UnitOfTime, number> = {
-    millisecond: 1,
-    second: 1000,
-    minute: 60 * 1000,
-    hour: 60 * 60 * 1000,
-    day: 24 * 60 * 60 * 1000,
-    week: 7 * 24 * 60 * 60 * 1000,
-    month: NaN,
-    year: NaN
-}
+import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
 
 function _addMonth(amount: number, date: Date): Date {
     const clone = new Date(date)
@@ -62,7 +51,7 @@ const add: Curry<
                 case 'hour':
                 case 'day':
                 case 'week':
-                    return new Date(steps[unit] * amount + date.getTime())
+                    return new Date(millisecondsPer[unit] * amount + date.getTime())
 
                 default:
                     throw new Error(`Expected argument 'unit' to be of type '${unitsOfTime.join(' | ')}'`)

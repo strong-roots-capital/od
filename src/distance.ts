@@ -1,18 +1,7 @@
 import { get } from './get'
 import { curry, Curry } from './curry'
 import { parseDate} from './parse'
-import { UnitOfTime, unitsOfTime  } from './unit-of-time'
-
-const millisecondsPer: Record<UnitOfTime, number> = {
-    millisecond: 1,
-    second: 1000,
-    minute: 60 * 1000,
-    hour: 60 * 60 * 1000,
-    day: 24 * 60 * 60 * 1000,
-    week: 7 * 24 * 60 * 60 * 1000,
-    month: NaN,
-    year: NaN
-}
+import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
 
 const distance: Curry<
     (

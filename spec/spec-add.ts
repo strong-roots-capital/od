@@ -1,4 +1,10 @@
 import { testProp, fc } from 'ava-fast-check'
+import {
+    unitsOfTime,
+    UnitOfTime,
+    Milliseconds,
+    millisecondsPer
+} from '../src/unit-of-time'
 
 /**
  * Library under test
@@ -6,30 +12,6 @@ import { testProp, fc } from 'ava-fast-check'
 
 import { add } from '../src/add'
 
-const unitsOfTime = [
-    'millisecond',
-    'second',
-    'minute',
-    'hour',
-    'day',
-    'week',
-    'month',
-    'year',
-] as const
-
-type UnitOfTime = (typeof unitsOfTime)[number];
-type Milliseconds = number
-
-const steps: Record<UnitOfTime, Milliseconds> = {
-    millisecond: 1,
-    second: 1000,
-    minute: 60 * 1000,
-    hour: 60 * 60 * 1000,
-    day: 24 * 60 * 60 * 1000,
-    week: 7 * 24 * 60 * 60 * 1000,
-    month: NaN,
-    year: NaN
-}
 
 /* http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.1 */
 const DATE_MAX_VALUE = 8640000000000000
@@ -38,7 +20,7 @@ const DATE_MAX = new Date(DATE_MAX_VALUE)
 
 function assert(unit: UnitOfTime): (amount: number, date: Date) => boolean {
     return function assertUnitOfTime(amount, date) {
-        const expected = Math.trunc(date.getTime() + amount * steps[unit])
+        const expected = Math.trunc(date.getTime() + amount * millisecondsPer[unit])
 
         if (Math.abs(expected) > DATE_MAX_VALUE) {
             /* test is invalid -- exceeds range of valid Date */
@@ -52,12 +34,12 @@ function assert(unit: UnitOfTime): (amount: number, date: Date) => boolean {
 
 /* An inaccurate, over-cautious estimation */
 function months(amount: number): Milliseconds {
-    return steps['week'] * 5 * amount
+    return millisecondsPer['week'] * 5 * amount
 }
 
 /* An inaccurate, over-cautious estimation */
 function years(amount: number): Milliseconds {
-    return steps['week'] * 53 * amount
+    return millisecondsPer['week'] * 53 * amount
 }
 
 /*********************************************************************
