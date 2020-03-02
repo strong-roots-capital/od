@@ -17,6 +17,8 @@ import {
  * Positive test cases
  ********************************************************************/
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 testProp(
     `should treat all generated ISO strings as valid`,
     [fc.date()],

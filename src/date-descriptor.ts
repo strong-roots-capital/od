@@ -57,7 +57,10 @@ function dateDescriptorArray(value: DateDescriptor): DateDescriptorArray {
 
 function dateStringAsDateDescriptor(datestring: string): DateDescriptor {
     const isoRegex = /^([-+]?(?:\d{2})?\d{4})-(\d{2})-(\d{2})T?(\d{2})?:?(\d{2})?:?(\d{2})?.?(\d{3})?Z?$/;
-    const matches = datestring.match(isoRegex)!
+    const matches = datestring.match(isoRegex)
+    if (matches === null) {
+        throw new Error(`Expected date-string to be in ISO time, got '${datestring}'`)
+    }
     return {
         year: Number.parseInt(matches[1]),
         month: Number.parseInt(matches[2]) - 1,

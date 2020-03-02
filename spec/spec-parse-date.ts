@@ -6,6 +6,10 @@ import { testProp, fc } from 'ava-fast-check'
 
 import { parseDate } from '../src/parse'
 
+/*********************************************************************
+ * Positive test cases
+ ********************************************************************/
+
 testProp(
     'should act as identity when given a Date',
     [
@@ -18,6 +22,12 @@ testProp(
         numRuns: 1000
     }
 )
+
+/*********************************************************************
+ * Negative test cases
+ ********************************************************************/
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 testProp(
     'should throw error when given a non-Date',

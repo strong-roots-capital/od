@@ -33,7 +33,7 @@ export function of(value: number | string | DateDescriptor): Date {
             case isDatestringInFormatISOWithoutTime(value):
                 return dateStringAsDate(value)
             default:
-                throw new Error(`Expected date-string to be in UTC or ISO time, got '${value}'`)
+                throw new Error(`Expected date-string to be in ISO time, got '${value}'`)
         }
     }
 
