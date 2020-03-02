@@ -2,7 +2,7 @@
 
 Since `od` aims to be consistent and intuitive, there is little point
 hashing out excruciatingly verbose details of how its functions map
-inputs to outputs. However, core JavaScript has many warts and
+inputs to outputs. However, core JavaScript `Date` has many warts and
 gotchas, so this page details how `od` does not expose you to the same
 irregular behavior as the core libraries.
 
@@ -42,12 +42,12 @@ the resulting data ([safely!]) through `Date.UTC`.
 
 # Acknowledgments
 
-Many of JavaScript's warts and gotchas were unknown to me, hidden in
-the [text of the ancients] until I re-discovered the forgotten
-knowledge through extensive use of [property testing]. As such,
-[fast-check] deserves a huge shout-out for job well done, without
-which none of us would be able to enjoy the manipulation of dates in
-JavaScript without major headache.
+Many of JavaScript's `Date`s warts and gotchas were unknown to me,
+hidden in the [text of the ancients] until I re-discovered the
+forgotten knowledge through extensive use of [property testing]. As
+such, [fast-check] deserves a huge shout-out for job well done,
+without which none of us would be able to enjoy the manipulation of
+dates in JavaScript without major headache.
 
 [text of the ancients]: http://www.ecma-international.org/ecma-262/5.1/
 [property testing]: https://en.wikipedia.org/wiki/Property_testing
