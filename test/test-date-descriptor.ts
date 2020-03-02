@@ -4,7 +4,10 @@ import test from 'ava'
  * Library under test
  */
 
-import { isDateDescriptor } from '../src/date-descriptor'
+import {
+    isDateDescriptor,
+    dateStringAsDate
+} from '../src/date-descriptor'
 
 
 test('should not consider non-objects to be dates', t => {
@@ -17,4 +20,8 @@ test('should consider date-descriptor with year to be valid', t => {
             year: 2000
         }
     ))
+})
+
+test('should throw on non-date-string input', t => {
+    t.throws(() => dateStringAsDate('horse'))
 })
