@@ -69,3 +69,17 @@ test('should throw when given something other than number, string, or date-descr
 test('should throw when given date-string in non-UTC and non-ISO format', t => {
     t.throws(() => D.of('horse'))
 })
+
+test('should create date from year-only date-descriptor without changing year', t => {
+    // Date.UTC(99, 0, 1) is apparently 1999-01-01
+    t.deepEqual(
+        Date.UTC(99, 0, 1),
+        D.of('1999-01-01T00:00:00.000Z').getTime()
+    )
+
+    // D.of should not follow this convention
+    t.deepEqual(
+        D.of('0099-01-01T00:00:00.000Z'),
+        D.of({year: 99})
+    )
+})

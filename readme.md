@@ -19,7 +19,7 @@ Need a date library?
 
 There's [moment], so big and so slow it'll make continental-drift look
 snappy. Or [js-joda], an imperative library with its own custom
-parsing! Doesn't that sound like a Good Idea™. Then there's [dayjs],
+parsing! Doesn't that sound like a [Good Idea]™. Then there's [dayjs],
 an imperative library that keeps data in its own custom objects like
 [moment].... making [tree-shaking] impossible. Next up is [date-fns],
 that only offers separate methods for incrementing a date by different
@@ -31,6 +31,7 @@ good fit if you keep looking for a few more years...
 
 [moment]: https://github.com/moment/moment
 [js-joda]: https://github.com/js-joda/js-joda
+[Good Idea]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Examples
 [dayjs]: https://github.com/iamkun/dayjs
 [date-fns]: https://github.com/date-fns/date-fns
 [date-fp]: https://github.com/cullophid/date-fp
@@ -151,12 +152,16 @@ Rules:
 - strings are treated as [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamps in UTC timezone
   - `'YYYY-MM-DD'`
   - `'YYYY-MM-DDTHH:MM:SS'`
+  - `'YYYY-MM-DDTHH:MM:SS.SSSZ'`
+  - `'YYYYYY-MM-DDTHH:MM:SS.SSSZ'`
 - `DateDescriptor` properties default to beginning-of-interval when unspecified
   - `{year: 2000, date: 25}` => `'2000-01-25T00:00:00.000Z'`
   - `{year: 2000, month: 1, date: 14, hour: 12, minute: 45, second: 0, millisecond: 0}` => `'2000-02-14T12:45:00.000Z'`
 
 With `DateDescriptor`s note that all fields are UTC time so months are
 zero-indexed.
+
+Read more in the [additional documentation](doc/documentation.md#of).
 
 ### Transforming Dates
 

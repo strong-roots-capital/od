@@ -9,6 +9,16 @@ export type DateDescriptor =
     | { year: number; month: number; date: number; hour: number; minute: number; second: number }
     | { year: number; month: number; date: number; hour: number; minute: number; second: number; millisecond: number }
 
+interface CompleteDateDescriptor {
+    year: number;
+    month: number;
+    date: number;
+    hour: number;
+    minute: number;
+    second: number;
+    millisecond: number;
+}
+
 export type DateDescriptorArray = [number, number, number, number, number, number, number];
 
 export function isDateDescriptor(value: unknown): value is DateDescriptor {
@@ -20,20 +30,55 @@ export function isDateDescriptor(value: unknown): value is DateDescriptor {
     return has('year', value)
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export function asDateDescriptorArray(
-    value: DateDescriptor
-): DateDescriptorArray {
+function completeDateDescriptor(value: DateDescriptor): CompleteDateDescriptor {
+    return {
+        year: value.year,
+        month: (value as CompleteDateDescriptor).month || 0,
+        date: (value as CompleteDateDescriptor).date || 1,
+        hour: (value as CompleteDateDescriptor).hour || 0,
+        minute: (value as CompleteDateDescriptor).minute || 0,
+        second: (value as CompleteDateDescriptor).second || 0,
+        millisecond: (value as CompleteDateDescriptor).millisecond || 0
+    }
+}
+
+function dateDescriptorArray(value: DateDescriptor): DateDescriptorArray {
+    const date = completeDateDescriptor(value)
     return [
-        (value as any).year,
-        (value as any).month || 0,
-        (value as any).date || 1,
-        (value as any).hour || 0,
-        (value as any).minute || 0,
-        (value as any).second || 0,
-        (value as any).millisecond || 0
+        date.year,
+        date.month,
+        date.date,
+        date.hour,
+        date.minute,
+        date.second,
+        date.millisecond
     ]
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
+
+function dateStringAsDateDescriptor(datestring: string): DateDescriptor {
+    const isoRegex = /^([-+]?(?:\d{2})?\d{4})-(\d{2})-(\d{2})T?(\d{2})?:?(\d{2})?:?(\d{2})?.?(\d{3})?Z?$/;
+    const matches = datestring.match(isoRegex)!
+    return {
+        year: Number.parseInt(matches[1]),
+        month: Number.parseInt(matches[2]) - 1,
+        date: Number.parseInt(matches[3]),
+        hour: Number.parseInt(matches[4]),
+        minute: Number.parseInt(matches[5]),
+        second: Number.parseInt(matches[6]),
+        millisecond: Number.parseInt(matches[7])
+    }
+}
+
+export function dateDescriptorAsDate(descriptor: DateDescriptor): Date {
+    const date = new Date(Date.UTC(...dateDescriptorArray(descriptor)))
+    date.setUTCFullYear(descriptor.year)
+    return date
+}
+
+export function dateStringAsDate(datestring: string): Date {
+    return dateDescriptorAsDate(
+        dateStringAsDateDescriptor(datestring)
+    )
+}
 
 //  LocalWords:  DateDescriptor
