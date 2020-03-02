@@ -34,9 +34,11 @@ From the [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaSc
 > browser differences and inconsistencies.
 
 `od` avoids this trap by never passing a string to the `Date`
-constructor or invoking `Date.parse` -- instead `od` parses
-date-strings into separate components and passes the resulting data
-(safely!) through `Date.UTC`.
+constructor or invoking `Date.parse` -- instead `od` uses a simple
+regex to parse ISO date-strings into a separate fields and passes
+the resulting data ([safely!]) through `Date.UTC`.
+
+[safely!]: #Date.UTC
 
 # Acknowledgments
 
