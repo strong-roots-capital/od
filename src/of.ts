@@ -1,4 +1,3 @@
-import { shift } from './non-empty-list'
 import {
     DateDescriptor,
     asDateDescriptorArray,
@@ -42,9 +41,7 @@ export function of(value: number | string | DateDescriptor): Date {
     }
 
     if (isDateDescriptor(value)) {
-        const dateDescriptorArray = asDateDescriptorArray(value)
-        const [first, nonEmptyList] = shift(dateDescriptorArray)
-        const [second, rest] = shift(nonEmptyList)
+        const [first, second, ...rest] = asDateDescriptorArray(value)
         return new Date(Date.UTC(first, second, ...rest))
     }
 

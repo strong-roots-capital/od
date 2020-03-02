@@ -16,3 +16,10 @@ export function parseDate(value: unknown): Date {
     }
     throw new Error(`Expected argument to be of type Date`)
 }
+
+export function has<K extends string>(
+    key: K,
+    value: object
+): value is { [key in K]: unknown } {
+    return key in value
+}

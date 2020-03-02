@@ -1,4 +1,4 @@
-import { NonEmptyListOfNonEmptyList } from './non-empty-list'
+import { has } from './parse'
 
 export type DateDescriptor =
     | { year: number }
@@ -9,8 +9,7 @@ export type DateDescriptor =
     | { year: number; month: number; date: number; hour: number; minute: number; second: number }
     | { year: number; month: number; date: number; hour: number; minute: number; second: number; millisecond: number }
 
-export type DateDescriptorArray = NonEmptyListOfNonEmptyList<number>
-
+export type DateDescriptorArray = [number, number, number, number, number, number, number];
 
 export function isDateDescriptor(value: unknown): value is DateDescriptor {
 
@@ -18,24 +17,23 @@ export function isDateDescriptor(value: unknown): value is DateDescriptor {
         return false
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return 'year' in value && (value as any)['year'] !== undefined
+    return has('year', value)
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function asDateDescriptorArray(
     value: DateDescriptor
-): NonEmptyListOfNonEmptyList<number> {
+): DateDescriptorArray {
     return [
-        /* eslint-disable @typescript-eslint/no-explicit-any */
         (value as any).year,
-        (value as any).month,
+        (value as any).month || 0,
         (value as any).date || 1,
-        (value as any).hour,
-        (value as any).minute,
-        (value as any).second,
-        (value as any).millisecond
-        /* eslint-enable @typescript-eslint/no-explicit-any */
-    ].map(prop => prop === undefined ? 0 : prop) as NonEmptyListOfNonEmptyList<number>
+        (value as any).hour || 0,
+        (value as any).minute || 0,
+        (value as any).second || 0,
+        (value as any).millisecond || 0
+    ]
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 //  LocalWords:  DateDescriptor
