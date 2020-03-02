@@ -37,15 +37,14 @@ export function of(value: number | string | DateDescriptor): Date {
         if (datestringInFormatISOWithoutTime(value)) {
             return new Date(value + 'T00:00:00.000Z')
         }
-        throw new Error('Expected date-string to be in UTC or ISO time')
+        throw new Error(`Expected date-string to be in UTC or ISO time, got '${value}'`)
     }
 
     if (isDateDescriptor(value)) {
-        const [first, second, ...rest] = asDateDescriptorArray(value)
-        return new Date(Date.UTC(first, second, ...rest))
+        return new Date(Date.UTC(...asDateDescriptorArray(value)))
     }
 
-    throw new Error('Expected argument to be of type number or string or DateDescriptor')
+    throw new Error(`Expected argument to be of type number or string or DateDescriptor, got '${value}'`)
 }
 
 //  LocalWords:  DateDescriptor
