@@ -21,21 +21,22 @@ export function of(year: number): Date;
 export function of(datestring: string): Date;
 export function of(descriptor: DateDescriptor): Date;
 export function of(value: number | string | DateDescriptor): Date {
+
     if (typeof value === 'number') {
         return new Date(value)
     }
 
     if (typeof value === 'string') {
-        if (isDatestringInFormatUTC(value)) {
-            return new Date(value)
+        switch (true) {
+            case isDatestringInFormatUTC(value):
+                return new Date(value)
+            case isDatestringInFormatISOWithTime(value):
+                return new Date(value + '.000Z')
+            case isDatestringInFormatISOWithoutTime(value):
+                return new Date(value + 'T00:00:00.000Z')
+            default:
+                throw new Error(`Expected date-string to be in UTC or ISO time, got '${value}'`)
         }
-        if (isDatestringInFormatISOWithTime(value)) {
-            return new Date(value + '.000Z')
-        }
-        if (isDatestringInFormatISOWithoutTime(value)) {
-            return new Date(value + 'T00:00:00.000Z')
-        }
-        throw new Error(`Expected date-string to be in UTC or ISO time, got '${value}'`)
     }
 
     if (isDateDescriptor(value)) {
