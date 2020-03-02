@@ -4,20 +4,18 @@ import {
     isDateDescriptor
 } from './date-descriptor'
 
-
-function datestringInFormatUTC(datestring: string): boolean {
+function isDatestringInFormatUTC(datestring: string): boolean {
     return /^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d.\d\d\dZ$/.test(datestring)
 }
 
-function datestringInFormatISOWithTime(datestring: string): boolean {
+function isDatestringInFormatISOWithTime(datestring: string): boolean {
     return /^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d$/.test(datestring)
         || /^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d.\d\d\d$/.test(datestring)
 }
 
-function datestringInFormatISOWithoutTime(datestring: string): boolean {
+function isDatestringInFormatISOWithoutTime(datestring: string): boolean {
     return /^\d\d\d\d-\d\d-\d\d$/.test(datestring)
 }
-
 
 export function of(year: number): Date;
 export function of(datestring: string): Date;
@@ -28,13 +26,13 @@ export function of(value: number | string | DateDescriptor): Date {
     }
 
     if (typeof value === 'string') {
-        if (datestringInFormatUTC(value)) {
+        if (isDatestringInFormatUTC(value)) {
             return new Date(value)
         }
-        if (datestringInFormatISOWithTime(value)) {
+        if (isDatestringInFormatISOWithTime(value)) {
             return new Date(value + '.000Z')
         }
-        if (datestringInFormatISOWithoutTime(value)) {
+        if (isDatestringInFormatISOWithoutTime(value)) {
             return new Date(value + 'T00:00:00.000Z')
         }
         throw new Error(`Expected date-string to be in UTC or ISO time, got '${value}'`)
