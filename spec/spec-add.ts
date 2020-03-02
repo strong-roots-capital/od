@@ -1,4 +1,5 @@
 import { testProp, fc } from 'ava-fast-check'
+import { not, includedIn } from './util'
 import {
     unitsOfTime,
     UnitOfTime,
@@ -19,7 +20,7 @@ const DATE_MIN = new Date(-DATE_MAX_VALUE)
 const DATE_MAX = new Date(DATE_MAX_VALUE)
 
 function assert(unit: UnitOfTime): (amount: number, date: Date) => boolean {
-    return function assertUnitOfTime(amount, date) {
+    return function assertForUnitOfTime(amount, date) {
         const expected = Math.trunc(date.getTime() + amount * millisecondsPer[unit])
 
         if (Math.abs(expected) > DATE_MAX_VALUE) {
@@ -130,25 +131,15 @@ testProp(
  * Negative test cases
  ********************************************************************/
 
-function not<F extends (...args: any[]) => boolean>(f: F): F {
-    return function inverted(...args: Parameters<F>) {
-        return !f(...args)
-    } as F
-}
-
-function includedIn<T>(list: T[]): (value: T) => boolean {
-    return function testIsIncludedIn(value) {
-        return list.includes(value)
-    }
-}
-
 testProp(
     'should throw on unsupported unit',
     [
         fc.oneof<any>(
             fc.string().filter(not(includedIn(unitsOfTime as unknown as string[]))),
             fc.date(),
-            fc.object()
+            fc.object(),
+            fc.float(),
+            fc.integer()
         ),
         fc.float(),
         fc.date()
@@ -185,7 +176,7 @@ testProp(
     [
         fc.constantFrom(...unitsOfTime),
         fc.oneof(fc.float(), fc.integer()),
-        fc.oneof<any>(fc.string(), fc.float(), fc.object(), fc.boolean()),
+        fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
     ],
     (unit: UnitOfTime, amount: number, date: any) => {
         try {

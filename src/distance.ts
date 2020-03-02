@@ -30,6 +30,7 @@ const distance: Curry<
             switch(unit) {
                 case 'year':
                     return get('year', b) - get('year', a)
+
                 case 'month':
                     return (get('year', b) - get('year', a)) * 12 +
                         get('month', b) - get('month', a)
