@@ -10,7 +10,7 @@ irregular behavior as the core libraries.
 
 ### Date.UTC
 
-Potential pitfall: `Date.UTC` is not a one-to-one function.
+Potential pitfall: `Date.UTC` is not an [injective] function.
 
 From the [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC#Description):
 
@@ -20,6 +20,7 @@ From the [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaSc
 How quaint. `od` avoids this trap by using [setUTCFullYear] after
 every invocation to `Date.UTC`.
 
+[injective]: https://en.wikipedia.org/wiki/Injective_function
 [setUTCFullYear]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCFullYear
 
 ### Date.parse
