@@ -1,6 +1,6 @@
 import { testProp, fc } from 'ava-fast-check'
 import { not, includedIn } from './util'
-import { unitsOfTime, UnitOfTime } from '../src/unit-of-time'
+import { unitsOfTime, accessibleUnitsOfTime, AccessibleUnitOfTime, } from '../src/unit-of-time'
 
 /**
  * Library under test
@@ -40,10 +40,10 @@ testProp(
 testProp(
     'should throw when date is not a Date',
     [
-        fc.constantFrom(...unitsOfTime),
+        fc.constantFrom(...accessibleUnitsOfTime),
         fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer())
     ],
-    (unit: UnitOfTime, date: any) => {
+    (unit: AccessibleUnitOfTime, date: any) => {
         try {
             get(unit, date)
             return false

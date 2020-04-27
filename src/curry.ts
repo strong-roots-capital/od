@@ -1,46 +1,36 @@
 /**
- * Many thanks to
- * https://medium.com/free-code-camp/typescript-curry-ramda-types-f747e99744ab
+ * Reference:
+ * https://stackoverflow.com/questions/51859461/generic-curry-function-with-typescript-3/51860718#51860718
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-type Cast<X, Y> = X extends Y ? X : Y;
-
-type Prepend<E, T extends any[]> =
-    ((head: E, ...args: T) => any) extends ((...args: infer U) => any)
-    ? U
-    : T
-
-type Length<T extends any[]> =
-    T['length'];
-
-type Tail<T extends any[]> =
-    ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any)
-    ? TT
-    : [];
-
-type Drop<N extends number, T extends any[], I extends any[] = []> = {
-    0: Drop<N, Tail<T>, Prepend<any, I>>;
-    1: T;
-}[
-    Length<I> extends N
-    ? 1
-    : 0
-];
-
-export type Curry<F extends ((...args: any) => any)> =
-    <T extends any[]>(...args: T) =>
-    Length<Drop<Length<T>, Parameters<F>> extends infer DT ? Cast<DT, any[]> : never> extends 0
-    ? ReturnType<F>
-    : Curry<(...args: Drop<Length<T>, Parameters<F>> extends infer DT ? Cast<DT, any[]> : never) => ReturnType<F>>;
-
-
-export function curry<F extends (...args: any) => any>(f: F): Curry<F> {
-
-    return function curried(...args): any {
+export function curry<F extends ((...args: any) => any)>(f: F): Curried<F> {
+    return function curried(...args: any[]): any {
         return args.length < f.length
             ? curried.bind(null, ...args)
-            : f.call(null, ...args)
+            : f.call(null, ...args as any)
     }
 }
+
+type Length<T extends Array<any>> = T['length'];
+
+type Applies<F extends (...a: any[]) => any, L extends number> = [
+    never,
+    F extends ((a: infer A, ...z: infer Z) => infer R) ?
+        (a: A) => Length<Z> extends 0 ? R : (...z: Z) => R : never,
+    F extends ((a: infer A, b: infer B, ...z: infer Z) => infer R) ?
+        (a: A, b: B) => Length<Z> extends 0 ? R : (...z: Z) => R : never,
+    F extends ((a: infer A, b: infer B, c: infer C, ...z: infer Z) => infer R) ?
+        (a: A, b: B, c: C) => Length<Z> extends 0 ? R : (...z: Z) => R : never,
+    F extends ((a: infer A, b: infer B, c: infer C, d: infer D, ...z: infer Z) => infer R) ?
+        (a: A, b: B, c: C, d: D) => Length<Z> extends 0 ? R : (...z: Z) => R : never,
+    F extends ((a: infer A, b: infer B, c: infer C, d: infer D, e: infer E,...z: infer Z) => infer R) ?
+        (a: A, b: B, c: C, d: D, e: E) => Length<Z> extends 0 ? R : (...z: Z) => R : never
+][L];
+
+export type Curried<F extends ((...args: any[]) => any)> =
+    <L extends Parameters<Applies<F, number>>>(...args: L) =>
+    ReturnType<Applies<F, Length<L>>> extends Function
+    ? Curried<ReturnType<Applies<F, Length<L>>>>
+    : ReturnType<F>;
