@@ -82,5 +82,6 @@ test('should support function currying', t => {
 })
 
 test('should throw on unexpected unit', t => {
-    t.throws(() => get('nanosecond')(new Date()))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    t.throws(() => get('nanosecond' as any)(new Date()))
 })

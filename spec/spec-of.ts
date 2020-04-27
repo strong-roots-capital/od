@@ -112,7 +112,7 @@ testProp(
     ],
     (input) => {
         try {
-            of(input)
+            of(input as any)
             return false
         } catch (error) {
             return true

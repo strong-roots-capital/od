@@ -85,7 +85,8 @@ test('should support partial application of two arguments', t => {
 })
 
 test('should throw on unexpected unit', t => {
-    t.throws(() => add('nanosecond')(1, new Date()))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    t.throws(() => add('nanosecond' as any)(1, new Date()))
 })
 
 test('should not support adding fractions of a millisecond', t => {

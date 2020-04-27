@@ -84,5 +84,6 @@ test('should find distance in milliseconds', t => {
 })
 
 test('should throw on unexpected unit', t => {
-    t.throws(() => distance('nanosecond')(new Date(), new Date()))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    t.throws(() => distance('nanosecond' as any)(new Date(), new Date()))
 })

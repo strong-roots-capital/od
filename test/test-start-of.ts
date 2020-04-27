@@ -100,5 +100,6 @@ test('should calculate date representing start of week (Sunday) when date is Sat
 })
 
 test('should throw on unexpected unit', t => {
-    t.throws(() => startOf('nanosecond')(new Date(Date.UTC(2000, 1, 12, 12, 34, 5, 60))))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    t.throws(() => startOf('nanosecond' as any)(new Date(Date.UTC(2000, 1, 12, 12, 34, 5, 60))))
 })
