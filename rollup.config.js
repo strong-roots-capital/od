@@ -1,6 +1,7 @@
 // rollup.config.js
 
 import typescript from '@wessberg/rollup-plugin-ts';
+import { terser } from 'rollup-plugin-terser'
 
 export default {
     input: [
@@ -23,6 +24,7 @@ export default {
         },
     ],
     plugins: [
-        typescript()
+        typescript(),
+        terser()
     ]
 };
