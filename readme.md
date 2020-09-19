@@ -56,7 +56,7 @@ It's
 - simple
     - Each function has one job and does it well
 - tested
-    - 100% code coverage
+    - 100% code coverage, property-tested with [fast-check]
 - maintained
     - Maintenance becomes simple when scope is kept minimal
 - documented
@@ -69,6 +69,7 @@ It's
     - [Rollup] ensures the smallest code-size and fastest load-times
 
 [JavaScript Date]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+[fast-check]: https://github.com/dubzzz/fast-check
 [readme]: #documentation
 [partial-application]: https://en.wikipedia.org/wiki/Partial_application
 [Rollup]: https://github.com/rollup/rollup
