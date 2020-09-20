@@ -2,7 +2,7 @@
     "name": "od",
     "version": "3.0.2",
     "description": "Oh dear, another date library",
-    "main": "lib/index.js",
+    "main": "lib/index.esm.js",
     "types": "lib/index.d.ts",
     "module": "lib/index.esm.js",
     "scripts": {
@@ -11,7 +11,8 @@
         "clean": "rimraf --no-glob lib",
         "ava": "ava -s -v",
         "lint": "eslint --ext ts .",
-        "test": "nyc ava",
+        "test": "nyc ava && size-limit",
+	"size": "size-limit",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "push-with-tags": "git push origin master && git push origin --tags",
         "push-and-publish": "npm run push-with-tags && npm publish"
@@ -31,6 +32,7 @@
     "homepage": "https://github.com/strong-roots-capital/od",
     "devDependencies": {
         "@rollup/plugin-typescript": "^4.1.1",
+        "@size-limit/preset-small-lib": "^4.6.0",
         "@types/node": "^13.13.4",
         "@typescript-eslint/eslint-plugin": "^2.29.0",
         "@typescript-eslint/parser": "^2.29.0",
@@ -45,6 +47,7 @@
         "rimraf": "^3.0.2",
         "rollup": "^2.7.2",
         "rollup-plugin-terser": "^7.0.2",
+        "size-limit": "^4.6.0",
         "tldrlegal": "^1.0.11",
         "ts-node": "^8.9.1",
         "tslib": "^1.11.1",
@@ -79,5 +82,11 @@
     },
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "size-limit": [
+        {
+	    "path": "lib/index.js",
+	    "limit": "2 KB"
+        }
+    ]
 }
