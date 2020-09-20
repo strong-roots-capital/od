@@ -1,6 +1,6 @@
 {
     "name": "od",
-    "version": "3.0.5",
+    "version": "3.0.6",
     "description": "Oh dear, another date library",
     "main": "lib/index.es.js",
     "types": "lib/index.d.ts",
@@ -11,8 +11,8 @@
         "clean": "rimraf --no-glob lib",
         "ava": "ava -s -v",
         "lint": "eslint --ext ts .",
-        "test": "nyc ava && size-limit",
-        "size": "size-limit",
+        "test": "nyc ava && npm run size",
+        "size": "size-limit lib/index.es.js",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "push-with-tags": "git push origin master && git push origin --tags",
         "push-and-publish": "npm run push-with-tags && npm publish"
@@ -30,6 +30,7 @@
         "url": "https://github.com/strong-roots-capital/od/issues"
     },
     "homepage": "https://github.com/strong-roots-capital/od",
+    "dependencies": {},
     "devDependencies": {
         "@rollup/plugin-typescript": "^4.1.1",
         "@size-limit/preset-small-lib": "^4.6.0",
@@ -45,6 +46,7 @@
         "nyc": "^15.0.1",
         "rimraf": "^3.0.2",
         "rollup": "^2.7.2",
+        "rollup-plugin-cleanup": "^3.1.1",
         "rollup-plugin-terser": "^7.0.2",
         "size-limit": "^4.6.0",
         "tldrlegal": "^1.0.11",
@@ -85,7 +87,7 @@
     "size-limit": [
         {
             "path": "lib/index.js",
-            "limit": "2 KB"
+            "limit": "1.5 KB"
         }
     ]
 }
