@@ -1,6 +1,6 @@
 {
     "name": "od",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "Oh dear, another date library",
     "main": "lib/index.esm.js",
     "types": "lib/index.d.ts",
@@ -12,7 +12,7 @@
         "ava": "ava -s -v",
         "lint": "eslint --ext ts .",
         "test": "nyc ava && size-limit",
-	"size": "size-limit",
+        "size": "size-limit",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "push-with-tags": "git push origin master && git push origin --tags",
         "push-and-publish": "npm run push-with-tags && npm publish"
@@ -85,8 +85,8 @@
     },
     "size-limit": [
         {
-	    "path": "lib/index.js",
-	    "limit": "2 KB"
+            "path": "lib/index.js",
+            "limit": "2 KB"
         }
     ]
 }
