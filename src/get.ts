@@ -2,7 +2,7 @@ import { curry } from './curry'
 import { parseDate} from './parse'
 import { AccessibleUnitOfTime, accessibleUnitsOfTime  } from './unit-of-time'
 
-const get = curry(
+export const get = curry(
     function get(
         unit: AccessibleUnitOfTime,
         date: Date
@@ -34,7 +34,5 @@ const get = curry(
         }
     }
 )
-
-export { get }
 
 //  LocalWords:  AccessibleUnitOfTime

@@ -3,7 +3,7 @@ import { curry } from './curry'
 import { parseDate} from './parse'
 import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
 
-const distance = curry(
+export const distance = curry(
     function distance(
         unit: UnitOfTime,
         a: Date,
@@ -38,7 +38,5 @@ const distance = curry(
 
     }
 )
-
-export { distance }
 
 //  LocalWords:  UnitOfTime

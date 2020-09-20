@@ -2,7 +2,7 @@ import { curry } from './curry'
 import { parseDate } from './parse'
 import { ResetableUnitOfTime, resetableUnitsOfTime  } from './unit-of-time'
 
-const startOf = curry(
+export const startOf = curry(
     function startOf(
         unit: ResetableUnitOfTime,
         date: Date
@@ -42,7 +42,5 @@ const startOf = curry(
         }
     }
 )
-
-export { startOf }
 
 //  LocalWords:  ResetableUnitOfTime

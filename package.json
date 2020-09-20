@@ -6,7 +6,7 @@
     "types": "lib/index.d.ts",
     "module": "lib/index.es.js",
     "scripts": {
-        "prepublishOnly": "npm run clean && npm run compile && agadoo lib/index.es.js",
+        "prepublishOnly": "npm run clean && npm run compile",
         "compile": "rollup -c",
         "clean": "rimraf --no-glob lib",
         "ava": "ava -s -v",
@@ -37,7 +37,6 @@
         "@typescript-eslint/eslint-plugin": "^2.29.0",
         "@typescript-eslint/parser": "^2.29.0",
         "@wessberg/rollup-plugin-ts": "^1.2.24",
-        "agadoo": "^2.0.0",
         "ava": "^3.8.1",
         "ava-fast-check": "^1.1.2",
         "codecov": "^3.6.5",
