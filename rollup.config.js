@@ -1,6 +1,4 @@
-// rollup.config.js
-
-import typescript from '@wessberg/rollup-plugin-ts';
+import typescript from '@wessberg/rollup-plugin-ts'
 import { terser } from 'rollup-plugin-terser'
 
 export default {
@@ -12,10 +10,6 @@ export default {
         'src/subtract.ts'
     ],
     output: [
-        {
-            dir: 'lib',
-            format: 'cjs',
-        },
         {
             dir: 'lib',
             format: 'esm',
