@@ -10,7 +10,7 @@ import { subtract } from './subtract'
 import { startOf } from './start-of'
 import { distance } from './distance'
 
-interface D {
+type D = {
     of: typeof of;
     add: typeof add;
     subtract: typeof subtract;
