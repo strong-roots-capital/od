@@ -2,17 +2,17 @@
     "name": "od",
     "version": "3.0.9",
     "description": "Oh dear, another date library",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "main": "lib/index.cjs.js",
+    "types": "lib/index.cjs.d.ts",
     "module": "lib/index.es.js",
     "scripts": {
         "prepublishOnly": "npm run clean && npm run compile",
-        "compile": "rollup -c && size-limit",
+        "compile": "rollup -c",
         "clean": "rimraf --no-glob lib",
         "ava": "ava -s -v",
         "lint": "eslint --ext ts .",
-        "test": "nyc ava && size-limit",
-        "size": "size-limit",
+        "test": "nyc ava && npm run size",
+        "size": "size-limit lib/index.es.js",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "push-with-tags": "git push origin master && git push origin --tags",
         "push-and-publish": "npm run push-with-tags && npm publish"
@@ -86,7 +86,7 @@
     },
     "size-limit": [
         {
-            "path": "lib/index.es.js",
+            "path": "lib/index.js",
             "limit": "1.5 KB"
         }
     ]
