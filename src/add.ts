@@ -14,7 +14,7 @@ function _addYear(amount: number, date: Date): Date {
     return clone
 }
 
-const add = curry(
+export const add = curry(
     function add(
         unit: UnitOfTime,
         amount: number,
@@ -44,7 +44,5 @@ const add = curry(
         }
     }
 )
-
-export { add }
 
 //  LocalWords:  unitOfTime

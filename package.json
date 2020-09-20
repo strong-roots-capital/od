@@ -1,18 +1,18 @@
 {
     "name": "od",
-    "version": "3.0.3",
+    "version": "3.0.7",
     "description": "Oh dear, another date library",
-    "main": "lib/index.esm.js",
+    "main": "lib/index.es.js",
     "types": "lib/index.d.ts",
-    "module": "lib/index.esm.js",
+    "module": "lib/index.es.js",
     "scripts": {
-        "prepublishOnly": "npm run clean && npm run compile && agadoo lib/index.esm.js",
+        "prepublishOnly": "npm run clean && npm run compile",
         "compile": "rollup -c",
         "clean": "rimraf --no-glob lib",
         "ava": "ava -s -v",
         "lint": "eslint --ext ts .",
-        "test": "nyc ava && size-limit",
-        "size": "size-limit",
+        "test": "nyc ava && npm run size",
+        "size": "size-limit lib/index.es.js",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "push-with-tags": "git push origin master && git push origin --tags",
         "push-and-publish": "npm run push-with-tags && npm publish"
@@ -30,6 +30,7 @@
         "url": "https://github.com/strong-roots-capital/od/issues"
     },
     "homepage": "https://github.com/strong-roots-capital/od",
+    "dependencies": {},
     "devDependencies": {
         "@rollup/plugin-typescript": "^4.1.1",
         "@size-limit/preset-small-lib": "^4.6.0",
@@ -37,7 +38,6 @@
         "@typescript-eslint/eslint-plugin": "^2.29.0",
         "@typescript-eslint/parser": "^2.29.0",
         "@wessberg/rollup-plugin-ts": "^1.2.24",
-        "agadoo": "^2.0.0",
         "ava": "^3.8.1",
         "ava-fast-check": "^1.1.2",
         "codecov": "^3.6.5",
@@ -46,6 +46,7 @@
         "nyc": "^15.0.1",
         "rimraf": "^3.0.2",
         "rollup": "^2.7.2",
+        "rollup-plugin-cleanup": "^3.1.1",
         "rollup-plugin-terser": "^7.0.2",
         "size-limit": "^4.6.0",
         "tldrlegal": "^1.0.11",
@@ -86,7 +87,7 @@
     "size-limit": [
         {
             "path": "lib/index.js",
-            "limit": "2 KB"
+            "limit": "1.5 KB"
         }
     ]
 }
