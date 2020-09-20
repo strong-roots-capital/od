@@ -1,5 +1,6 @@
 import typescript from '@wessberg/rollup-plugin-ts'
 import { terser } from 'rollup-plugin-terser'
+import cleanup from 'rollup-plugin-cleanup'
 
 export default {
     input: [
@@ -19,6 +20,7 @@ export default {
     ],
     plugins: [
         typescript(),
-        terser()
-    ]
+        terser(),
+        cleanup({comments: 'none'})
+    ],
 };
