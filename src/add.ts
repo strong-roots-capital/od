@@ -2,14 +2,14 @@ import { curry } from './curry'
 import { parseNumber, parseDate} from './parse'
 import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
 
-function _addMonth(amount: number, date: Date): Date {
-    const clone = new Date(date)
+function _addMonth(amount: number, date: Readonly<Date>): Date {
+    const clone = new Date(date.getTime())
     clone.setUTCMonth(date.getUTCMonth() + amount)
     return clone
 }
 
-function _addYear(amount: number, date: Date): Date {
-    const clone = new Date(date)
+function _addYear(amount: number, date: Readonly<Date>): Date {
+    const clone = new Date(date.getTime())
     clone.setUTCFullYear(date.getUTCFullYear() + amount)
     return clone
 }
@@ -18,7 +18,7 @@ export const add = curry(
     function add(
         unit: UnitOfTime,
         amount: number,
-        date: Date
+        date: Readonly<Date>
     ): Date {
 
         parseNumber(amount)

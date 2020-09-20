@@ -5,7 +5,7 @@ import { AccessibleUnitOfTime, accessibleUnitsOfTime  } from './unit-of-time'
 export const get = curry(
     function get(
         unit: AccessibleUnitOfTime,
-        date: Date
+        date: Readonly<Date>
     ): number {
 
         parseDate(date)
