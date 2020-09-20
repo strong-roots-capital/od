@@ -19,8 +19,8 @@ export function isDatestringInFormatISOWithoutTime(datestring: string): boolean 
 
 export function of(millisecondsSinceEpoch: number): Date;
 export function of(datestring: string): Date;
-export function of(descriptor: DateDescriptor): Date;
-export function of(value: number | string | DateDescriptor): Date {
+export function of(descriptor: Readonly<DateDescriptor>): Date;
+export function of(value: number | string | Readonly<DateDescriptor>): Date {
 
     if (typeof value === 'number') {
         return new Date(value)

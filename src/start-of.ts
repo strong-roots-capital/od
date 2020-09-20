@@ -5,12 +5,12 @@ import { ResetableUnitOfTime, resetableUnitsOfTime  } from './unit-of-time'
 export const startOf = curry(
     function startOf(
         unit: ResetableUnitOfTime,
-        date: Date
+        date: Readonly<Date>
     ): Date {
 
         parseDate(date)
 
-        const clone = new Date(date)
+        const clone = new Date(date.getTime())
 
         switch (unit) {
             case 'second':

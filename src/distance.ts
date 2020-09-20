@@ -6,8 +6,8 @@ import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
 export const distance = curry(
     function distance(
         unit: UnitOfTime,
-        a: Date,
-        b: Date
+        a: Readonly<Date>,
+        b: Readonly<Date>
     ): number {
 
         parseDate(a)

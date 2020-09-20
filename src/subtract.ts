@@ -6,7 +6,7 @@ export const subtract = curry(
     function subtract(
         unit: UnitOfTime,
         amount: number,
-        date: Date
+        date: Readonly<Date>
     ): Date {
         return add(unit, -amount, date)
     }
