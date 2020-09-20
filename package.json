@@ -1,6 +1,6 @@
 {
     "name": "od",
-    "version": "3.0.10",
+    "version": "3.0.11",
     "description": "Oh dear, another date library",
     "main": "lib/index.cjs.js",
     "types": "lib/index.cjs.d.ts",
