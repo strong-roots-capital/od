@@ -17,7 +17,6 @@
         "@typescript-eslint/prefer-namespace-keyword": "warn",
         "@typescript-eslint/prefer-includes": "warn",
         "@typescript-eslint/prefer-for-of": "warn",
-        "@typescript-eslint/ban-ts-ignore": "error",
         "@typescript-eslint/await-thenable": "error",
         "@typescript-eslint/adjacent-overload-signatures": "warn",
         "@typescript-eslint/no-useless-constructor": "warn",
@@ -50,10 +49,6 @@
             "error"
         ],
         "no-extra-parens": "off",
-        "@typescript-eslint/interface-name-prefix": [
-            "warn",
-            "never"
-        ],
         "@typescript-eslint/explicit-function-return-type": [
             "warn",
             {

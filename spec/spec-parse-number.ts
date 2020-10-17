@@ -13,7 +13,9 @@ import { parseNumber } from '../src/parse'
 testProp(
     'should act as identity when given a number',
     [fc.oneof(fc.float(), fc.integer())],
-    (value) => value === parseNumber(value) ,
+    (t, value) => {
+        t.is(parseNumber(value), value)
+    },
     {
         verbose: true,
         numRuns: 1000
@@ -31,12 +33,7 @@ testProp(
     [
         fc.oneof<any>(fc.string(), fc.object(), fc.boolean())
     ],
-    (value: any) => {
-        try {
-            parseNumber(value)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, value) => {
+        t.throws(() => parseNumber(value))
     }
 )

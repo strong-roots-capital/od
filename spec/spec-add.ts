@@ -1,3 +1,4 @@
+import { ExecutionContext } from 'ava'
 import { testProp, fc } from 'ava-fast-check'
 import { not, includedIn } from './util'
 import {
@@ -13,23 +14,22 @@ import {
 
 import { add } from '../src/add'
 
-
 /* http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.1 */
 const DATE_MAX_VALUE = 8640000000000000
 const DATE_MIN = new Date(-DATE_MAX_VALUE)
 const DATE_MAX = new Date(DATE_MAX_VALUE)
 
-function assert(unit: UnitOfTime): (amount: number, date: Date) => boolean {
-    return function assertForUnitOfTime(amount, date) {
+function assert(unit: UnitOfTime): (t: ExecutionContext, amount: number, date: Date) => void {
+    return function assertForUnitOfTime(t, amount, date) {
         const expected = Math.trunc(date.getTime() + amount * millisecondsPer[unit])
 
         if (Math.abs(expected) > DATE_MAX_VALUE) {
             /* test is invalid -- exceeds range of valid Date */
-            return true
+            return t.pass()
         }
 
         const received = add(unit, amount, date)
-        return expected === received.getTime()
+        t.is(received.getTime(), expected)
     }
 }
 
@@ -98,12 +98,12 @@ testProp(
             max: new Date(DATE_MAX.getTime() - months(3001))
         })
     ],
-    (amount: number, date: Date) => {
+    (t, amount, date) => {
         const expected = new Date(date)
         expected.setUTCMonth(date.getUTCMonth() + amount)
 
         const received = add('month', amount, date)
-        return expected.getTime() === received.getTime()
+        t.is(received.getTime(), expected.getTime())
     },
     {verbose: true}
 )
@@ -117,12 +117,12 @@ testProp(
             max: new Date(DATE_MAX.getTime() - years(3001))
         })
     ],
-    (amount: number, date: Date) => {
+    (t, amount, date) => {
         const expected = new Date(date)
         expected.setUTCFullYear(date.getUTCFullYear() + amount)
 
         const received = add('year', amount, date)
-        return expected.getTime() === received.getTime()
+        t.is(received.getTime(), expected.getTime())
     },
     {verbose: true}
 )
@@ -146,13 +146,8 @@ testProp(
         fc.float(),
         fc.date()
     ],
-    (unit: any, amount: number, date: Date) => {
-        try {
-            add(unit, amount, date)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, amount, date) => {
+        t.throws(() => add(unit as any, amount, date))
     }
 )
 
@@ -163,13 +158,8 @@ testProp(
         fc.oneof<any>(fc.string(), fc.date(), fc.object(), fc.boolean()),
         fc.date()
     ],
-    (unit: UnitOfTime, amount: any, date: Date) => {
-        try {
-            add(unit, amount, date)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, amount, date) => {
+        t.throws(() => add(unit, amount as any, date))
     }
 )
 
@@ -180,12 +170,7 @@ testProp(
         fc.oneof(fc.float(), fc.integer()),
         fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
     ],
-    (unit: UnitOfTime, amount: number, date: any) => {
-        try {
-            add(unit, amount, date)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, amount, date) => {
+        t.throws(() => add(unit, amount, date as any))
     }
 )

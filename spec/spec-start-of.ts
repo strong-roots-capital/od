@@ -1,6 +1,6 @@
 import { testProp, fc } from 'ava-fast-check'
 import { not, includedIn } from './util'
-import { resetableUnitsOfTime, ResetableUnitOfTime } from '../src/unit-of-time'
+import { resetableUnitsOfTime } from '../src/unit-of-time'
 
 /**
  * Library under test
@@ -15,7 +15,9 @@ import { startOf } from '../src/start-of'
 testProp(
     'should set milliseconds to zero after winding date back to start-of second',
     [fc.date()],
-    (date) => 0 === startOf('second', date).getUTCMilliseconds(),
+    (t, date) => {
+        t.is(startOf('second', date).getUTCMilliseconds(), 0)
+    },
     {
         verbose: true,
         numRuns: 1000
@@ -25,10 +27,10 @@ testProp(
 testProp(
     'should set seconds to zero after winding date back to start-of minute',
     [fc.date()],
-    (date) => {
+    (t, date) => {
         const reset = startOf('minute', date)
-        return 0 === reset.getUTCSeconds()
-            && 0 === reset.getUTCMilliseconds()
+        t.is(reset.getUTCSeconds(), 0)
+        t.is(reset.getUTCMilliseconds(), 0)
     },
     {
         verbose: true,
@@ -39,11 +41,11 @@ testProp(
 testProp(
     'should set minutes to zero after winding date back to start-of hour',
     [fc.date()],
-    (date) => {
+    (t, date) => {
         const reset = startOf('hour', date)
-        return 0 === reset.getUTCMinutes()
-            && 0 === reset.getUTCSeconds()
-            && 0 === reset.getUTCMilliseconds()
+        t.is(reset.getUTCMinutes(), 0)
+        t.is(reset.getUTCSeconds(), 0)
+        t.is(reset.getUTCMilliseconds(), 0)
     },
     {
         verbose: true,
@@ -54,12 +56,12 @@ testProp(
 testProp(
     'should set hours to zero after winding date back to start-of day',
     [fc.date()],
-    (date) => {
+    (t, date) => {
         const reset = startOf('day', date)
-        return 0 === reset.getUTCHours()
-            && 0 === reset.getUTCMinutes()
-            && 0 === reset.getUTCSeconds()
-            && 0 === reset.getUTCMilliseconds()
+        t.is(reset.getUTCHours(), 0)
+        t.is(reset.getUTCMinutes(), 0)
+        t.is(reset.getUTCSeconds(), 0)
+        t.is(reset.getUTCMilliseconds(), 0)
     },
     {
         verbose: true,
@@ -70,13 +72,13 @@ testProp(
 testProp(
     'should set days to zero after winding date back to start-of week',
     [fc.date()],
-    (date) => {
+    (t, date) => {
         const reset = startOf('week', date)
-        return 0 === reset.getUTCDay()
-            && 0 === reset.getUTCHours()
-            && 0 === reset.getUTCMinutes()
-            && 0 === reset.getUTCSeconds()
-            && 0 === reset.getUTCMilliseconds()
+        t.is(reset.getUTCDay(), 0)
+        t.is(reset.getUTCHours(), 0)
+        t.is(reset.getUTCMinutes(), 0)
+        t.is(reset.getUTCSeconds(), 0)
+        t.is(reset.getUTCMilliseconds(), 0)
     },
     {
         verbose: true,
@@ -87,13 +89,13 @@ testProp(
 testProp(
     'should set date to zero after winding date back to start-of month',
     [fc.date()],
-    (date) => {
+    (t, date) => {
         const reset = startOf('month', date)
-        return 1 === reset.getUTCDate()
-            && 0 === reset.getUTCHours()
-            && 0 === reset.getUTCMinutes()
-            && 0 === reset.getUTCSeconds()
-            && 0 === reset.getUTCMilliseconds()
+        t.is(reset.getUTCDate(), 1)
+        t.is(reset.getUTCHours(), 0)
+        t.is(reset.getUTCMinutes(), 0)
+        t.is(reset.getUTCSeconds(), 0)
+        t.is(reset.getUTCMilliseconds(), 0)
     },
     {
         verbose: true,
@@ -104,14 +106,14 @@ testProp(
 testProp(
     'should set month to zero after winding date back to start-of year',
     [fc.date()],
-    (date) => {
+    (t, date) => {
         const reset = startOf('year', date)
-        return 0 === reset.getUTCMonth()
-            && 1 === reset.getUTCDate()
-            && 0 === reset.getUTCHours()
-            && 0 === reset.getUTCMinutes()
-            && 0 === reset.getUTCSeconds()
-            && 0 === reset.getUTCMilliseconds()
+        t.is(reset.getUTCMonth(), 0)
+        t.is(reset.getUTCDate(), 1)
+        t.is(reset.getUTCHours(), 0)
+        t.is(reset.getUTCMinutes(), 0)
+        t.is(reset.getUTCSeconds(), 0)
+        t.is(reset.getUTCMilliseconds(), 0)
     },
     {
         verbose: true,
@@ -137,13 +139,8 @@ testProp(
         ),
         fc.date()
     ],
-    (unit: any, date: Date) => {
-        try {
-            startOf(unit, date)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, date) => {
+        t.throws(() => startOf(unit as any, date))
     },
     {verbose: true}
 )
@@ -154,13 +151,8 @@ testProp(
         fc.constantFrom(...resetableUnitsOfTime),
         fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer())
     ],
-    (unit: ResetableUnitOfTime, date: any) => {
-        try {
-            startOf(unit, date)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, date) => {
+        t.throws(() => startOf(unit, date as any))
     },
     {verbose: true}
 )
