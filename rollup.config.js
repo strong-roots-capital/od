@@ -15,7 +15,8 @@ export default {
             dir: 'lib',
             format: 'cjs',
             chunkFileNames: '[name]-[hash].[format].js',
-            entryFileNames: '[name].[format].js'
+            entryFileNames: '[name].[format].js',
+            exports: 'auto'
         },
         {
             dir: 'lib',

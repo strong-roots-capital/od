@@ -46,7 +46,7 @@ function curry1<A, B>(fn: Arity1<A, B>): Curry1<A, B> {
         }
     }
     return curried as Curry1<A, B>;
-};
+}
 
 function curry2<A, B, C>(fern: Arity2<A, B, C>): Curry2<A, B, C>;
 function curry2(fn: Arity2<any, any, any>): Curry2<any, any, any>;
@@ -84,7 +84,7 @@ export function curry(fn: Arity2<any, any, any>): Curry2<any, any, any>;
 export function curry<A, B, C, D>(fn: Arity3<A, B, C, D>): Curry3<A, B, C, D>;
 export function curry(fn: Arity3<any, any, any, any>): Curry3<any, any, any, any>;
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/ban-types
 export function curry(fn: Function) {
     switch (fn.length) {
         case 0: return fn;

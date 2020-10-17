@@ -22,8 +22,8 @@ import {
 testProp(
     `should treat all generated ISO strings as valid`,
     [fc.date()],
-    (date) => {
-        return isDatestringInFormatISO(date.toISOString())
+    (t, date) => {
+        t.true(isDatestringInFormatISO(date.toISOString()))
     },
     {
         verbose: true,
@@ -34,9 +34,11 @@ testProp(
 testProp(
     `should treat all generated ISO strings without milliseconds strings as valid`,
     [fc.date()],
-    (date) => {
-        return isDatestringInFormatISOWithoutMilliseconds(
-            date.toISOString().slice(0, -5)
+    (t, date) => {
+        t.true(
+            isDatestringInFormatISOWithoutMilliseconds(
+                date.toISOString().slice(0, -5)
+            )
         )
     },
     {
@@ -48,9 +50,11 @@ testProp(
 testProp(
     `should treat all generated ISO strings without time strings as valid`,
     [fc.date()],
-    (date) => {
-        return isDatestringInFormatISOWithoutTime(
-            date.toISOString().slice(0, -14)
+    (t, date) => {
+        t.true(
+            isDatestringInFormatISOWithoutTime(
+                date.toISOString().slice(0, -14)
+            )
         )
     },
     {
@@ -62,9 +66,9 @@ testProp(
 testProp(
     `should reconstruct any date from its corresponding date-descriptor`,
     [fc.date()],
-    (date) => {
+    (t, date) => {
         const descriptor = asDateDescriptor(date)
-        return date.getTime() === of(descriptor).getTime()
+        t.is(of(descriptor).getTime(), date.getTime())
     },
     {
         verbose: true,
@@ -75,8 +79,8 @@ testProp(
 testProp(
     `should reconstruct any date from its corresponding ISO string`,
     [fc.date()],
-    (date) => {
-        return date.getTime() === of(date.toISOString()).getTime()
+    (t, date) => {
+        t.is(of(date.toISOString()).getTime(), date.getTime())
     },
     {
         verbose: true,
@@ -87,8 +91,8 @@ testProp(
 testProp(
     `should reconstruct any date from its corresponding milliseconds-since-epoch`,
     [fc.date()],
-    (date) => {
-        return date.getTime() === of(date.getTime()).getTime()
+    (t, date) => {
+        t.is(of(date.getTime()).getTime(), date.getTime())
     },
     {
         verbose: true,
@@ -110,13 +114,8 @@ testProp(
             fc.object().filter(not(isDateDescriptor))
         )
     ],
-    (input) => {
-        try {
-            of(input as any)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, input) => {
+        t.throws(() => of(input as any))
     },
     {
         verbose: true,

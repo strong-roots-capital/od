@@ -1,6 +1,6 @@
 import { testProp, fc } from 'ava-fast-check'
 import { not, includedIn } from './util'
-import { unitsOfTime, accessibleUnitsOfTime, AccessibleUnitOfTime, } from '../src/unit-of-time'
+import { unitsOfTime, accessibleUnitsOfTime } from '../src/unit-of-time'
 
 /**
  * Library under test
@@ -26,13 +26,8 @@ testProp(
         ),
         fc.date()
     ],
-    (unit: any, date: Date) => {
-        try {
-            get(unit, date)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, date) => {
+        t.throws(() => get(unit as any, date))
     },
     {verbose: true}
 )
@@ -43,13 +38,8 @@ testProp(
         fc.constantFrom(...accessibleUnitsOfTime),
         fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer())
     ],
-    (unit: AccessibleUnitOfTime, date: any) => {
-        try {
-            get(unit, date)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, date) => {
+        t.throws(() => get(unit, date as any))
     },
     {verbose: true}
 )

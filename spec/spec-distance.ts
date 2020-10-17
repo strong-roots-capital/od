@@ -1,3 +1,4 @@
+import { ExecutionContext } from 'ava'
 import { testProp, fc } from 'ava-fast-check'
 import { not, includedIn } from './util'
 import { add } from '../src/add'
@@ -14,12 +15,12 @@ import {
 
 import { distance } from '../src/distance'
 
-function assert(unit: UnitOfTime): (a: Date, b: Date) => boolean {
-    return function assertForUnitOfTime(a, b) {
+function assert(unit: UnitOfTime): (t: ExecutionContext, a: Date, b: Date) => void {
+    return function assertForUnitOfTime(t, a, b) {
         const expected = Math.round(
             (b.getTime() - a.getTime()) / millisecondsPer[unit]
         )
-        return expected === distance(unit, a, b)
+        t.is(distance(unit, a, b), expected)
     }
 }
 
@@ -72,11 +73,11 @@ testProp(
 testProp(
     'should calculate distance in months between any two dates',
     [fc.date(), fc.date()],
-    (a: Date, b: Date) => {
+    (t, a, b) => {
         const months = distance('month', a, b)
         const expectedLowerBound = add('month', months, startOf('month', a)).getTime()
         const expectedUpperBound = add('month', months + 1, startOf('month', a)).getTime()
-        return expectedLowerBound <= b.getTime() && b.getTime() <= expectedUpperBound
+        t.true(expectedLowerBound <= b.getTime() && b.getTime() <= expectedUpperBound)
     },
     {verbose: true}
 )
@@ -84,11 +85,11 @@ testProp(
 testProp(
     'should calculate distance in years between any two dates',
     [fc.date(), fc.date()],
-    (a: Date, b: Date)=> {
+    (t, a, b)=> {
         const years = distance('year', a, b)
         const expectedLowerBound = add('year', years, startOf('year', a)).getTime()
         const expectedUpperBound = add('year', years + 1, startOf('year', a)).getTime()
-        return expectedLowerBound <= b.getTime() && b.getTime() <= expectedUpperBound
+        t.true(expectedLowerBound <= b.getTime() && b.getTime() <= expectedUpperBound)
     },
     {verbose: true}
 )
@@ -112,13 +113,8 @@ testProp(
         fc.date(),
         fc.date()
     ],
-    (unit: any, a: Date, b: Date) => {
-        try {
-            distance(unit, a, b)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, a, b) => {
+        t.throws(() => distance(unit as any, a, b))
     }
 )
 
@@ -129,13 +125,8 @@ testProp(
         fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
         fc.date()
     ],
-    (unit: UnitOfTime, amount: any, date: Date) => {
-        try {
-            distance(unit, amount, date)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, amount, date) => {
+        t.throws(() => distance(unit, amount as any, date))
     }
 )
 
@@ -146,12 +137,7 @@ testProp(
         fc.date(),
         fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
     ],
-    (unit: UnitOfTime, a: Date, b: any) => {
-        try {
-            distance(unit, a, b)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, unit, a, b) => {
+        t.throws(() => distance(unit, a, b as any))
     }
 )

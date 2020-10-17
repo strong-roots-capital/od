@@ -15,8 +15,8 @@ testProp(
     [
         fc.date()
     ],
-    (value) => {
-        return value === parseDate(value)
+    (t, value) => {
+        t.is(parseDate(value).getTime(), value.getTime())
     },
     {
         numRuns: 1000
@@ -34,12 +34,7 @@ testProp(
     [
         fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float())
     ],
-    (value: any) => {
-        try {
-            parseDate(value)
-            return false
-        } catch (error) {
-            return true
-        }
+    (t, value) => {
+        t.throws(() => parseDate(value))
     }
 )
