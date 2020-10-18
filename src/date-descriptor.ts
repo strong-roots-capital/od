@@ -9,7 +9,7 @@ export type DateDescriptor =
     | { year: number; month: number; date: number; hour: number; minute: number; second: number }
     | { year: number; month: number; date: number; hour: number; minute: number; second: number; millisecond: number }
 
-interface CompleteDateDescriptor {
+type CompleteDateDescriptor = {
     year: number;
     month: number;
     date: number;
