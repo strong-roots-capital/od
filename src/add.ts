@@ -2,15 +2,29 @@ import { curry } from './curry'
 import { parseNumber, parseDate} from './parse'
 import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
 
+function numberOfDaysInMonth(date: Date): number {
+    return new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0).getUTCDate()
+}
+
 function _addMonth(amount: number, date: Readonly<Date>): Date {
+    // DOCUMENT: in docstring that final months with fewer days
+    // than the given month will be change to the last day in the
+    // final month
     const clone = new Date(date.getTime())
+    clone.setUTCDate(1)
     clone.setUTCMonth(date.getUTCMonth() + amount)
+    clone.setUTCDate(Math.min(numberOfDaysInMonth(clone), date.getUTCDate()))
     return clone
 }
 
 function _addYear(amount: number, date: Readonly<Date>): Date {
+    // DOCUMENT: in docstring that final months with fewer days
+    // than the given month will be change to the last day in the
+    // final month
     const clone = new Date(date.getTime())
+    clone.setUTCDate(1)
     clone.setUTCFullYear(date.getUTCFullYear() + amount)
+    clone.setUTCDate(Math.min(numberOfDaysInMonth(clone), date.getUTCDate()))
     return clone
 }
 

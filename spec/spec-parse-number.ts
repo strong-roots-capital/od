@@ -14,7 +14,7 @@ testProp(
     'should act as identity when given a number',
     [fc.oneof(fc.float(), fc.integer())],
     (t, value) => {
-        t.is(parseNumber(value), value)
+        t.is(value, parseNumber(value))
     },
     {
         verbose: true,

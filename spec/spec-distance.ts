@@ -20,7 +20,7 @@ function assert(unit: UnitOfTime): (t: ExecutionContext, a: Date, b: Date) => vo
         const expected = Math.round(
             (b.getTime() - a.getTime()) / millisecondsPer[unit]
         )
-        t.is(distance(unit, a, b), expected)
+        t.is(expected, distance(unit, a, b))
     }
 }
 

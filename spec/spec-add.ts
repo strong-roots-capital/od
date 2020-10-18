@@ -8,6 +8,10 @@ import {
     millisecondsPer
 } from '../src/unit-of-time'
 
+// TODO: document new `add` behavior in readme
+// TODO: make a bug for this behavior and document it as fixed in the commit message
+// TODO: publish as 4.0.0rc1 (or however those rc's work)
+
 /**
  * Library under test
  */
@@ -29,7 +33,7 @@ function assert(unit: UnitOfTime): (t: ExecutionContext, amount: number, date: D
         }
 
         const received = add(unit, amount, date)
-        t.is(received.getTime(), expected)
+        t.is(new Date(expected).toISOString(), received.toISOString())
     }
 }
 
@@ -41,6 +45,10 @@ function months(amount: number): Milliseconds {
 /* An inaccurate, over-cautious estimation */
 function years(amount: number): Milliseconds {
     return millisecondsPer['week'] * 53 * amount
+}
+
+function numberOfDaysInMonth(date: Date): number {
+    return new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0).getUTCDate()
 }
 
 /*********************************************************************
@@ -100,12 +108,17 @@ testProp(
     ],
     (t, amount, date) => {
         const expected = new Date(date)
+        expected.setUTCDate(1)
         expected.setUTCMonth(date.getUTCMonth() + amount)
+        expected.setUTCDate(Math.min(numberOfDaysInMonth(expected), date.getUTCDate()))
 
         const received = add('month', amount, date)
-        t.is(received.getTime(), expected.getTime())
+        t.is(expected.toISOString(), received.toISOString())
     },
-    {verbose: true}
+    {
+        verbose: true,
+        numRuns: 1000
+    }
 )
 
 testProp(
@@ -119,12 +132,17 @@ testProp(
     ],
     (t, amount, date) => {
         const expected = new Date(date)
+        expected.setUTCDate(1)
         expected.setUTCFullYear(date.getUTCFullYear() + amount)
+        expected.setUTCDate(Math.min(numberOfDaysInMonth(expected), date.getUTCDate()))
 
         const received = add('year', amount, date)
-        t.is(received.getTime(), expected.getTime())
+        t.is(expected.toISOString(), received.toISOString())
     },
-    {verbose: true}
+    {
+        verbose: true,
+        numRuns: 1000
+    }
 )
 
 /*********************************************************************

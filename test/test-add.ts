@@ -154,3 +154,10 @@ test('should support adding fractions of a week', t => {
         add('week', weeks, date)
     )
 })
+
+test.only('should set date to last day of output month when input month has more days than output month', t => {
+    t.deepEqual(
+        new Date(Date.UTC(2001, 1, 28)),
+        add('month', 1, new Date(Date.UTC(2001, 0, 31)))
+    )
+})
