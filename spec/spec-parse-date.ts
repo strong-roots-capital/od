@@ -16,7 +16,7 @@ testProp(
         fc.date()
     ],
     (t, value) => {
-        t.is(parseDate(value).getTime(), value.getTime())
+        t.is(value.toISOString(), parseDate(value).toISOString())
     },
     {
         numRuns: 1000

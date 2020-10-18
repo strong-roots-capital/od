@@ -41,6 +41,31 @@ the resulting data ([safely!]) through `Date.UTC`.
 
 [safely!]: #Date.UTC
 
+## add
+
+### Date.setUTCMonth
+
+Potential pitfall: Incrementing a date one month, to a month with
+fewer days than the current date, "overflows" the incremented date to
+the next month.
+
+From the [MDN
+Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCMonth#Description):
+
+> If a parameter you specify is outside of the expected range,
+> setUTCMonth() attempts to update the date information in the Date
+> object accordingly. For example, if you use 15 for monthValue, the
+> year will be incremented by 1, and 3 will be used for month.
+
+This means adding 1 month to January 31st gives you March 3rd (or 2nd,
+on leap years).
+
+`od` avoids this in the `add` function when incrementing by `month` or
+`year` intervals by changing the date of the output value to the final
+day in the output month, rather than overflowing the month. This
+ensures that the difference in months between the given value and the
+received value is always exactly the specified amount.
+
 # Acknowledgments
 
 Many of JavaScript's `Date`s warts and gotchas were unknown to me,

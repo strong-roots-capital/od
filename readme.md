@@ -49,6 +49,8 @@ It's
     - Every function returns a new Date object
 - consistent
     - UTC everywhere. Let's all just ignore everything else.
+- intuitive
+    - Guides developers away from [common pitfalls]
 - fast
     - As fast as you can get with the core libraries
 - transparent
@@ -73,6 +75,7 @@ It's
     - [Rollup] ensures the smallest code-size and fastest load-times
 
 [JavaScript Date]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+[common pitfalls]: doc/documentation.md
 [fast-check]: https://github.com/dubzzz/fast-check
 [readme]: #documentation
 [partial-application]: https://en.wikipedia.org/wiki/Partial_application
@@ -198,6 +201,17 @@ Supported time units:
 - `month`
 - `year`
 
+Note: when incrementing by `month` or `year`, if the day of the month
+for the input date is greater than the number of days in the output
+month, the day of the month for the output date will be set to the
+last day in the output month.
+
+```typescript
+add('month', 1, D.of('2000-01-31'))  //=> 2000-02-29T00:00:00.000Z
+```
+
+Read more in the [additional documentation](doc/documentation.md#add).
+
 #### subtract
 
 <details><summary><code>subtract :: UnitOfTime -> number -> Date -> Date</code></summary>
@@ -208,7 +222,7 @@ subtract :: UnitOfTime -> number -> Date -> Date
 
 </details>
 
-Increments the given date by the specified number of time units, and
+Decrements the given date by the specified number of time units, and
 returns a new Date with the new value.
 
 ``` typescript

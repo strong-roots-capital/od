@@ -16,7 +16,7 @@ testProp(
     'should set milliseconds to zero after winding date back to start-of second',
     [fc.date()],
     (t, date) => {
-        t.is(startOf('second', date).getUTCMilliseconds(), 0)
+        t.is(0, startOf('second', date).getUTCMilliseconds())
     },
     {
         verbose: true,
@@ -29,8 +29,8 @@ testProp(
     [fc.date()],
     (t, date) => {
         const reset = startOf('minute', date)
-        t.is(reset.getUTCSeconds(), 0)
-        t.is(reset.getUTCMilliseconds(), 0)
+        t.is(0, reset.getUTCSeconds())
+        t.is(0, reset.getUTCMilliseconds())
     },
     {
         verbose: true,
@@ -43,9 +43,9 @@ testProp(
     [fc.date()],
     (t, date) => {
         const reset = startOf('hour', date)
-        t.is(reset.getUTCMinutes(), 0)
-        t.is(reset.getUTCSeconds(), 0)
-        t.is(reset.getUTCMilliseconds(), 0)
+        t.is(0, reset.getUTCMinutes())
+        t.is(0, reset.getUTCSeconds())
+        t.is(0, reset.getUTCMilliseconds())
     },
     {
         verbose: true,
@@ -58,10 +58,10 @@ testProp(
     [fc.date()],
     (t, date) => {
         const reset = startOf('day', date)
-        t.is(reset.getUTCHours(), 0)
-        t.is(reset.getUTCMinutes(), 0)
-        t.is(reset.getUTCSeconds(), 0)
-        t.is(reset.getUTCMilliseconds(), 0)
+        t.is(0, reset.getUTCHours())
+        t.is(0, reset.getUTCMinutes())
+        t.is(0, reset.getUTCSeconds())
+        t.is(0, reset.getUTCMilliseconds())
     },
     {
         verbose: true,
@@ -74,11 +74,11 @@ testProp(
     [fc.date()],
     (t, date) => {
         const reset = startOf('week', date)
-        t.is(reset.getUTCDay(), 0)
-        t.is(reset.getUTCHours(), 0)
-        t.is(reset.getUTCMinutes(), 0)
-        t.is(reset.getUTCSeconds(), 0)
-        t.is(reset.getUTCMilliseconds(), 0)
+        t.is(0, reset.getUTCDay())
+        t.is(0, reset.getUTCHours())
+        t.is(0, reset.getUTCMinutes())
+        t.is(0, reset.getUTCSeconds())
+        t.is(0, reset.getUTCMilliseconds())
     },
     {
         verbose: true,
@@ -91,11 +91,11 @@ testProp(
     [fc.date()],
     (t, date) => {
         const reset = startOf('month', date)
-        t.is(reset.getUTCDate(), 1)
-        t.is(reset.getUTCHours(), 0)
-        t.is(reset.getUTCMinutes(), 0)
-        t.is(reset.getUTCSeconds(), 0)
-        t.is(reset.getUTCMilliseconds(), 0)
+        t.is(1, reset.getUTCDate())
+        t.is(0, reset.getUTCHours())
+        t.is(0, reset.getUTCMinutes())
+        t.is(0, reset.getUTCSeconds())
+        t.is(0, reset.getUTCMilliseconds())
     },
     {
         verbose: true,
@@ -108,12 +108,12 @@ testProp(
     [fc.date()],
     (t, date) => {
         const reset = startOf('year', date)
-        t.is(reset.getUTCMonth(), 0)
-        t.is(reset.getUTCDate(), 1)
-        t.is(reset.getUTCHours(), 0)
-        t.is(reset.getUTCMinutes(), 0)
-        t.is(reset.getUTCSeconds(), 0)
-        t.is(reset.getUTCMilliseconds(), 0)
+        t.is(0, reset.getUTCMonth())
+        t.is(1, reset.getUTCDate())
+        t.is(0, reset.getUTCHours())
+        t.is(0, reset.getUTCMinutes())
+        t.is(0, reset.getUTCSeconds())
+        t.is(0, reset.getUTCMilliseconds())
     },
     {
         verbose: true,

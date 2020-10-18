@@ -68,7 +68,7 @@ testProp(
     [fc.date()],
     (t, date) => {
         const descriptor = asDateDescriptor(date)
-        t.is(of(descriptor).getTime(), date.getTime())
+        t.is(date.toISOString(), of(descriptor).toISOString())
     },
     {
         verbose: true,
@@ -80,7 +80,7 @@ testProp(
     `should reconstruct any date from its corresponding ISO string`,
     [fc.date()],
     (t, date) => {
-        t.is(of(date.toISOString()).getTime(), date.getTime())
+        t.is(date.toISOString(), of(date.toISOString()).toISOString())
     },
     {
         verbose: true,
@@ -92,7 +92,7 @@ testProp(
     `should reconstruct any date from its corresponding milliseconds-since-epoch`,
     [fc.date()],
     (t, date) => {
-        t.is(of(date.getTime()).getTime(), date.getTime())
+        t.is(date.toISOString(), of(date.getTime()).toISOString())
     },
     {
         verbose: true,
