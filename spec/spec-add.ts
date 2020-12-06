@@ -149,12 +149,10 @@ testProp(
  * Negative test cases
  ********************************************************************/
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 testProp(
     'should throw on unsupported unit',
     [
-        fc.oneof<any>(
+        fc.oneof(
             fc.string().filter(not(includedIn(unitsOfTime as unknown as string[]))),
             fc.date(),
             fc.object(),
@@ -173,7 +171,7 @@ testProp(
     'should throw when amount is not a number',
     [
         fc.constantFrom(...unitsOfTime),
-        fc.oneof<any>(fc.string(), fc.date(), fc.object(), fc.boolean()),
+        fc.oneof(fc.string(), fc.date(), fc.object(), fc.boolean()),
         fc.date()
     ],
     (t, unit, amount, date) => {
@@ -186,7 +184,7 @@ testProp(
     [
         fc.constantFrom(...unitsOfTime),
         fc.oneof(fc.float(), fc.integer()),
-        fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
+        fc.oneof(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
     ],
     (t, unit, amount, date) => {
         t.throws(() => add(unit, amount, date as any))

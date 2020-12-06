@@ -98,12 +98,10 @@ testProp(
  * Negative test cases
  ********************************************************************/
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 testProp(
     'should throw on unsupported unit',
     [
-        fc.oneof<any>(
+        fc.oneof(
             fc.string().filter(not(includedIn(unitsOfTime as unknown as string[]))),
             fc.date(),
             fc.object(),
@@ -122,7 +120,7 @@ testProp(
     'should throw when a is not a Date',
     [
         fc.constantFrom(...unitsOfTime),
-        fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
+        fc.oneof(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
         fc.date()
     ],
     (t, unit, amount, date) => {
@@ -135,7 +133,7 @@ testProp(
     [
         fc.constantFrom(...unitsOfTime),
         fc.date(),
-        fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
+        fc.oneof(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer()),
     ],
     (t, unit, a, b) => {
         t.throws(() => distance(unit, a, b as any))

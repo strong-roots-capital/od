@@ -26,12 +26,10 @@ testProp(
  * Negative test cases
  ********************************************************************/
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 testProp(
     'should throw error when given a non-number',
     [
-        fc.oneof<any>(fc.string(), fc.object(), fc.boolean())
+        fc.oneof(fc.string(), fc.object(), fc.boolean())
     ],
     (t, value) => {
         t.throws(() => parseNumber(value))
