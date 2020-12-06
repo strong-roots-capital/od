@@ -27,12 +27,10 @@ testProp(
  * Negative test cases
  ********************************************************************/
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 testProp(
     'should throw error when given a non-Date',
     [
-        fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float())
+        fc.oneof(fc.string(), fc.object(), fc.boolean(), fc.float())
     ],
     (t, value) => {
         t.throws(() => parseDate(value))

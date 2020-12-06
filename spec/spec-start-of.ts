@@ -125,12 +125,10 @@ testProp(
  * Negative test cases
  ********************************************************************/
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 testProp(
     'should throw on unsupported unit',
     [
-        fc.oneof<any>(
+        fc.oneof(
             fc.string().filter(not(includedIn(resetableUnitsOfTime as unknown as string[]))),
             fc.date(),
             fc.object(),
@@ -149,7 +147,7 @@ testProp(
     'should throw when date is not a Date',
     [
         fc.constantFrom(...resetableUnitsOfTime),
-        fc.oneof<any>(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer())
+        fc.oneof(fc.string(), fc.object(), fc.boolean(), fc.float(), fc.integer())
     ],
     (t, unit, date) => {
         t.throws(() => startOf(unit, date as any))
