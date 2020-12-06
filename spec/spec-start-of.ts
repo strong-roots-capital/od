@@ -125,6 +125,8 @@ testProp(
  * Negative test cases
  ********************************************************************/
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 testProp(
     'should throw on unsupported unit',
     [

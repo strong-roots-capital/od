@@ -8,10 +8,6 @@ import {
     millisecondsPer
 } from '../src/unit-of-time'
 
-// TODO: document new `add` behavior in readme
-// TODO: make a bug for this behavior and document it as fixed in the commit message
-// TODO: publish as 4.0.0rc1 (or however those rc's work)
-
 /**
  * Library under test
  */
@@ -148,6 +144,8 @@ testProp(
 /*********************************************************************
  * Negative test cases
  ********************************************************************/
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 testProp(
     'should throw on unsupported unit',
