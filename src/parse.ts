@@ -11,8 +11,7 @@ export function parseDate(value: unknown): Date {
             && (value as Date).getTime !== undefined
             && !Number.isNaN((value as Date).getTime())
     ) {
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-        return value as unknown as Date
+        return value as Date
     }
     throw new Error(`Expected argument to be of type Date`)
 }
