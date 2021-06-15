@@ -1,6 +1,6 @@
 import { get } from './get'
 import { curry } from './curry'
-import { parseDate} from './parse'
+import { parseDate } from './parse'
 import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
 
 export const distance = curry(
