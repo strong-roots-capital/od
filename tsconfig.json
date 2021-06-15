@@ -1,28 +1,32 @@
 {
-    "include": [
-        "src/**/*",
-	"test/**/*",
-	"spec/**/*"
+  "include": [
+    "src/**/*",
+    "test/**/*",
+    "spec/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es6"
     ],
-    "exclude": [
-        "node_modules",
-        "dist"
-    ],
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "lib": ["es6"],
-        "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "outDir": "./lib",
-        "downlevelIteration": true,
-        "removeComments": true,
-        "strict": true,
-        "baseUrl": "./",
-        "paths": {
-            "*": ["src/@types/*"]
-        },
-        "esModuleInterop": true
-    }
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./lib",
+    "downlevelIteration": true,
+    "removeComments": true,
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "src/@types/*"
+      ]
+    },
+    "esModuleInterop": true
+  }
 }
