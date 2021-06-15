@@ -62,7 +62,7 @@ It's
 - tested
     - 100% code coverage, property-tested with [fast-check]
 - tiny
-    - 1.0 kB gzipped
+    - 1 kB gzipped
 - maintained
     - Maintenance becomes simple when scope is kept minimal
 - documented
@@ -71,8 +71,6 @@ It's
     - All functions support [partial-application]
 - dependency-free
     - [Zero dependencies] were used in the making of this library
-- efficient
-    - [Rollup] ensures the smallest code-size and fastest load-times
 
 [JavaScript Date]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 [common pitfalls]: doc/documentation.md
