@@ -12,7 +12,7 @@
         "ava": "ava -s -v",
         "lint": "eslint --ext ts .",
         "test": "nyc ava && npm run size",
-        "size": "size-limit lib/index.es.js",
+        "size": "size-limit",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "push-with-tags": "git push origin master && git push origin --tags",
         "push-and-publish": "npm run push-with-tags && npm publish"
