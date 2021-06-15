@@ -24,6 +24,10 @@ function assert(unit: UnitOfTime): (t: ExecutionContext, a: Date, b: Date) => vo
     }
 }
 
+function isValidDate(date: Date): boolean {
+    return !Number.isNaN(date.getTime())
+}
+
 /*********************************************************************
  * Positive test cases
  ********************************************************************/
@@ -72,24 +76,44 @@ testProp(
 
 testProp(
     'should calculate distance in months between any two dates',
-    [fc.date(), fc.date()],
+    [
+        fc.date().filter(d => isValidDate(startOf('month', d))),
+        fc.date().filter(d => isValidDate(startOf('month', d)) && isValidDate(add('month', 1, d)))
+    ],
     (t, a, b) => {
         const months = distance('month', a, b)
-        const expectedLowerBound = add('month', months, startOf('month', a)).getTime()
-        const expectedUpperBound = add('month', months + 1, startOf('month', a)).getTime()
-        t.true(expectedLowerBound <= b.getTime() && b.getTime() <= expectedUpperBound)
+        const startOfA = startOf('month', a)
+
+        // may land in the middle of the month due to leap seconds/minutes/days
+        const expectedLowerBoundMonth = add('month', months, startOfA)
+        const expectedUpperBoundMonth = add('month', months + 1, startOfA)
+
+        const expectedLowerBound = startOf('month', expectedLowerBoundMonth)
+        const expectedUpperBound = startOf('month', expectedUpperBoundMonth)
+
+        t.true(expectedLowerBound.getTime() <= b.getTime() && b.getTime() <= expectedUpperBound.getTime())
     },
     {verbose: true}
 )
 
 testProp(
     'should calculate distance in years between any two dates',
-    [fc.date(), fc.date()],
+    [
+        fc.date().filter(d => isValidDate(startOf('year', d))),
+        fc.date().filter(d => isValidDate(startOf('year', d)) && isValidDate(add('year', 1, d)))
+    ],
     (t, a, b)=> {
         const years = distance('year', a, b)
-        const expectedLowerBound = add('year', years, startOf('year', a)).getTime()
-        const expectedUpperBound = add('year', years + 1, startOf('year', a)).getTime()
-        t.true(expectedLowerBound <= b.getTime() && b.getTime() <= expectedUpperBound)
+        const startOfA = startOf('year', a)
+
+        // may land in the middle of the year due to leap seconds/minutes/days
+        const expectedLowerBoundYear = add('year', years, startOfA)
+        const expectedUpperBoundYear = add('year', years + 1, startOfA)
+
+        const expectedLowerBound = startOf('year', expectedLowerBoundYear)
+        const expectedUpperBound = startOf('year', expectedUpperBoundYear)
+
+        t.true(expectedLowerBound.getTime() <= b.getTime() && b.getTime() <= expectedUpperBound.getTime())
     },
     {verbose: true}
 )
