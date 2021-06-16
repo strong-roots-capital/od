@@ -2,25 +2,49 @@ import { curry } from './curry'
 import { parseNumber, parseDate} from './parse'
 import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
 
+/**
+ * Returns `NaN` when `date` is in the last-representable month,
+ * +275760-09-O1T00:00:00.000Z (October -- months are zero-indexed).
+ */
 function numberOfDaysInMonth(date: Date): number {
-    return new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0).getUTCDate()
+    const daysInMonth = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0).getUTCDate()
+    // happens when `date` is in the last-representable month,
+    // +275760-09-20T00:00:00.000Z (October -- months are zero-indexed)
+    if (Number.isNaN(daysInMonth)) {
+        return 31
+    }
+    return daysInMonth
 }
 
 function _addMonth(amount: number, date: Readonly<Date>): Date {
-    // DOCUMENT: in docstring that final months with fewer days
-    // than the given month will be change to the last day in the
-    // final month
-    const clone = new Date(date.getTime())
+    // The plan: set the date to the beginning of the month,
+    // advance the month counter, and reset the date to either
+    // the start-date or the end of the month, whichever is earlier.
+    //
+    // This avoids the case where we land on day 31 of a month with
+    // only 30 days, which then rolls over to the next month and
+    // means we advanced by 1-too-many months.
+    let clone = new Date(date.getTime())
     clone.setUTCDate(1)
-    clone.setUTCMonth(date.getUTCMonth() + amount)
+    // When `date` is less-than one month after the
+    // earliest-representable date (October 20), we can't reset the
+    // date back to the beginning of the month so we instead advance
+    // to the second month before winding back to the first day of the
+    // month and decrement 1 from the number of months to add.
+    if (Number.isNaN(clone.getTime()) && 0 < amount) {
+        clone = new Date(date.getTime())
+        // a date inside the first- and second- representable month
+        clone.setUTCDate(28)
+        clone.setUTCMonth(clone.getUTCMonth() + 1)
+        clone.setUTCDate(1)
+        amount -= 1
+    }
+    clone.setUTCMonth(clone.getUTCMonth() + amount)
     clone.setUTCDate(Math.min(numberOfDaysInMonth(clone), date.getUTCDate()))
     return clone
 }
 
 function _addYear(amount: number, date: Readonly<Date>): Date {
-    // DOCUMENT: in docstring that final months with fewer days
-    // than the given month will be change to the last day in the
-    // final month
     const clone = new Date(date.getTime())
     clone.setUTCDate(1)
     clone.setUTCFullYear(date.getUTCFullYear() + amount)

@@ -326,6 +326,26 @@ Supported time units:
 
 where `unix` resolves to the number of milliseconds since the unix epoch.
 
+### Caveats
+
+If you cause a `Date` overflow or underflow, `od` will return an
+`Invalid Date` object. You can test for invalid dates with the
+following code
+
+``` typescript
+declare invalidDate: Date
+if (Number.isNaN(invalidDate.getTime())) {
+  // `invalidDate` is invalid
+}
+```
+
+The decision not to check for overflow or underflow was explicitly
+made to uphold the project goals. To use `od` without throwing or
+producing overflow or underflow errors, consider wrapping with
+[fp-ts](https://github.com/gcanti/fp-ts).
+
+When an official wrapper exists, I'll post to it on this page.
+
 ## License
 
 [ISC licensed](LICENSE)

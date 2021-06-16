@@ -1,12 +1,21 @@
 import { testProp, fc } from 'ava-fast-check'
+import { match } from 'ts-pattern'
+import { ordDate } from 'fp-ts/Ord'
 import { not, includedIn } from './util'
 import { resetableUnitsOfTime } from '../src/unit-of-time'
+import { get } from '../src/get'
+import { add } from '../src/add'
+import { DATE_MIN } from './spec'
 
 /**
  * Library under test
  */
 
 import { startOf } from '../src/start-of'
+
+function isValidDate(date: Date): boolean {
+    return !Number.isNaN(date.getTime())
+}
 
 /*********************************************************************
  * Positive test cases
@@ -74,38 +83,71 @@ testProp(
     [fc.date()],
     (t, date) => {
         const reset = startOf('week', date)
-        t.is(0, reset.getUTCDay())
-        t.is(0, reset.getUTCHours())
-        t.is(0, reset.getUTCMinutes())
-        t.is(0, reset.getUTCSeconds())
-        t.is(0, reset.getUTCMilliseconds())
+        const oneWeekAfterEarliestRepresentableDate = add('week', 1, DATE_MIN)
+        const order = ordDate.compare(date, oneWeekAfterEarliestRepresentableDate)
+        match(order)
+            // when the start of week containing our date is before the
+            // earliest-representable date, the start of week should be
+            // 'Invalid Date'
+            .with(-1, () => {
+                t.false(isValidDate(reset))
+            })
+            .otherwise(() => {
+                t.is(0, reset.getUTCDay())
+                t.is(0, reset.getUTCHours())
+                t.is(0, reset.getUTCMinutes())
+                t.is(0, reset.getUTCSeconds())
+                t.is(0, reset.getUTCMilliseconds())
+            })
     },
     {
         verbose: true,
-        numRuns: 1000
+        numRuns: 1000,
+        examples: [
+            [add('week', 1, DATE_MIN)]
+        ]
     }
 )
 
 testProp(
     'should set date to zero after winding date back to start-of month',
-    [fc.date()],
+    [
+        fc.date().filter(d => isValidDate(startOf('month', d)))
+    ],
     (t, date) => {
         const reset = startOf('month', date)
-        t.is(1, reset.getUTCDate())
-        t.is(0, reset.getUTCHours())
-        t.is(0, reset.getUTCMinutes())
-        t.is(0, reset.getUTCSeconds())
-        t.is(0, reset.getUTCMilliseconds())
+        const oneMonthAfterEarliestRepresenableDate = add('month', 1, DATE_MIN)
+        const order = ordDate.compare(date, oneMonthAfterEarliestRepresenableDate)
+        match(order)
+            // when the start of month containing our date is before the
+            // earliest-representable date, the start of the month should be
+            // 'Invalid Date'
+            .with(-1, () => {
+                t.false(isValidDate(reset))
+            })
+            .otherwise(() => {
+                t.is(1, reset.getUTCDate())
+                t.is(0, reset.getUTCHours())
+                t.is(0, reset.getUTCMinutes())
+                t.is(0, reset.getUTCSeconds())
+                t.is(0, reset.getUTCMilliseconds())
+            })
     },
     {
         verbose: true,
-        numRuns: 1000
+        numRuns: 1000,
+        endOnFailure: true,
+        examples: [
+            [add('month', 1, DATE_MIN)]
+        ]
     }
 )
 
 testProp(
     'should set month to zero after winding date back to start-of year',
-    [fc.date()],
+    [
+        fc.date().filter(d => get('year', d) !== get('year', DATE_MIN))
+    ],
     (t, date) => {
         const reset = startOf('year', date)
         t.is(0, reset.getUTCMonth())

@@ -1,23 +1,22 @@
 import { ExecutionContext } from 'ava'
 import { testProp, fc } from 'ava-fast-check'
 import { not, includedIn } from './util'
+import { get } from '../src/get'
 import {
     unitsOfTime,
     UnitOfTime,
-    Milliseconds,
     millisecondsPer
 } from '../src/unit-of-time'
+import {
+    DATE_MIN,
+    DATE_MAX_VALUE
+} from './spec'
 
 /**
  * Library under test
  */
 
 import { add } from '../src/add'
-
-/* http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.1 */
-const DATE_MAX_VALUE = 8640000000000000
-const DATE_MIN = new Date(-DATE_MAX_VALUE)
-const DATE_MAX = new Date(DATE_MAX_VALUE)
 
 function assert(unit: UnitOfTime): (t: ExecutionContext, amount: number, date: Date) => void {
     return function assertForUnitOfTime(t, amount, date) {
@@ -33,19 +32,18 @@ function assert(unit: UnitOfTime): (t: ExecutionContext, amount: number, date: D
     }
 }
 
-/* An inaccurate, over-cautious estimation */
-function months(amount: number): Milliseconds {
-    return millisecondsPer['week'] * 5 * amount
-}
-
-/* An inaccurate, over-cautious estimation */
-function years(amount: number): Milliseconds {
-    return millisecondsPer['week'] * 53 * amount
-}
-
 function numberOfDaysInMonth(date: Date): number {
-    return new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0).getUTCDate()
+    const daysInMonth = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0).getUTCDate()
+    if (Number.isNaN(daysInMonth)) {
+        return 31
+    }
+    return daysInMonth
 }
+
+function isValidDate(date: Date): boolean {
+    return !Number.isNaN(date.getTime())
+}
+
 
 /*********************************************************************
  * Positive test cases
@@ -96,48 +94,77 @@ testProp(
 testProp(
     'should add any number of months to a given date',
     [
-        fc.oneof(fc.float(), fc.integer(-3000, 3000)),
-        fc.date({
-            min: new Date(DATE_MIN.getTime() + months(3001)),
-            max: new Date(DATE_MAX.getTime() - months(3001))
-        })
+        fc.tuple(
+            fc.oneof(fc.float(), fc.integer()),
+            fc.date()
+        ).filter(
+            ([monthsToAdd, d]) => isValidDate(new Date(get('year', d), get('month', d) + monthsToAdd, 1))
+        )
     ],
-    (t, amount, date) => {
-        const expected = new Date(date)
+    (t, [amount, date]) => {
+        // NOTE: this test is essentially testing against the
+        // same implementation, I'm not sure what else to do here
+        // with this underflow at the beginning of the algorithm.
+        // That's not to say the test is useless, it did help me
+        // iron out several bugs.
+        let expected = new Date(date)
         expected.setUTCDate(1)
-        expected.setUTCMonth(date.getUTCMonth() + amount)
+
+        // When `date` is less-than one month after the
+        // earliest-representable date (October 20), we can't reset the
+        // date back to the beginning of the month so we instead advance
+        // to the second month before winding back to the first day of the
+        // month and decrement 1 from the number of months to add.
+        if (Number.isNaN(expected.getTime())) {
+            expected = new Date(date)
+            expected.setUTCDate(28)
+            // advance by the smallest month to kick us into the next
+            // month, then set the date back to 1
+            expected.setUTCMonth(date.getUTCMonth() + 1)
+            expected.setUTCDate(1)
+            if (amount !== 0) {
+                expected.setUTCMonth(expected.getUTCMonth() + amount - 1)
+            }
+        } else {
+            expected.setUTCMonth(date.getUTCMonth() + amount)
+        }
+
         expected.setUTCDate(Math.min(numberOfDaysInMonth(expected), date.getUTCDate()))
 
         const received = add('month', amount, date)
-        t.is(expected.toISOString(), received.toISOString())
+        t.deepEqual(expected, received)
     },
     {
         verbose: true,
-        numRuns: 1000
+        numRuns: 1000,
+        examples: [
+            [[1, DATE_MIN] as [number, Date]]
+        ]
     }
 )
 
 testProp(
     'should add any number of years to a given date',
     [
-        fc.oneof(fc.float(), fc.integer(-3000, 3000)),
-        fc.date({
-            min: new Date(DATE_MIN.getTime() + years(3001)),
-            max: new Date(DATE_MAX.getTime() - years(3001))
-        })
+        fc.tuple(
+            fc.oneof(fc.float(), fc.integer()),
+            fc.date()
+        ).filter(
+            ([yearsToAdd, d]) => isValidDate(new Date(get('year', d) + yearsToAdd, 0, 1))
+        )
     ],
-    (t, amount, date) => {
+    (t, [amount, date]) => {
         const expected = new Date(date)
         expected.setUTCDate(1)
         expected.setUTCFullYear(date.getUTCFullYear() + amount)
         expected.setUTCDate(Math.min(numberOfDaysInMonth(expected), date.getUTCDate()))
 
         const received = add('year', amount, date)
-        t.is(expected.toISOString(), received.toISOString())
+        t.deepEqual(expected, received)
     },
     {
         verbose: true,
-        numRuns: 1000
+        numRuns: 10000,
     }
 )
 
