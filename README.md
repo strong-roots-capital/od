@@ -1,13 +1,13 @@
 # od
 [![Build Status](https://cloud.drone.io/api/badges/strong-roots-capital/od/status.svg)](https://cloud.drone.io/strong-roots-capital/od)
 [![NPM Package][]](https://npmjs.org/package/od)
-[![Minified Size][]](https://unpkg.com/od/lib/index.es.js)
+[![Minified Size][]](https://unpkg.com/od/lib/src/index.js)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
 [![NPM Downloads][]](https://www.npmjs.com/package/od)
 [![wakatime](https://wakatime.com/badge/github/strong-roots-capital/od.svg)](https://wakatime.com/badge/github/strong-roots-capital/od)
 
 [NPM Package]: https://img.shields.io/npm/v/od.svg
-[Minified Size]: https://img.badgesize.io/https:/unpkg.com/od/lib/index.es.js?compression=gzip
+[Minified Size]: https://img.badgesize.io/https:/unpkg.com/od/lib/src/index.js?compression=gzip
 [Code Coverage]: https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg
 [NPM Downloads]: https://img.shields.io/npm/dm/od
 
