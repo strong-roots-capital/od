@@ -1,12 +1,11 @@
 # od
-[![Build Status][]](https://travis-ci.org/strong-roots-capital/od)
+[![Build Status](https://cloud.drone.io/api/badges/strong-roots-capital/od/status.svg)](https://cloud.drone.io/strong-roots-capital/od)
 [![NPM Package][]](https://npmjs.org/package/od)
 [![Minified Size][]](https://unpkg.com/od/lib/index.es.js)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
 [![NPM Downloads][]](https://www.npmjs.com/package/od)
 [![wakatime](https://wakatime.com/badge/github/strong-roots-capital/od.svg)](https://wakatime.com/badge/github/strong-roots-capital/od)
 
-[Build Status]: https://travis-ci.org/strong-roots-capital/od.svg?branch=master
 [NPM Package]: https://img.shields.io/npm/v/od.svg
 [Minified Size]: https://img.badgesize.io/https:/unpkg.com/od/lib/index.es.js?compression=gzip
 [Code Coverage]: https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg
