@@ -33,7 +33,7 @@
       "depends_on": ["lint"],
       "commands": [
         "npm run test",
-	"npm run coverage"
+        "npm run coverage"
       ]
     },
     {
@@ -42,7 +42,7 @@
       "depends_on": ["lint"],
       "commands": [
         "npm run test",
-	"npm run coverage"
+        "npm run coverage"
       ]
     },
     {
@@ -51,7 +51,7 @@
       "depends_on": ["lint"],
       "commands": [
         "npm run test",
-	"npm run coverage"
+        "npm run coverage"
       ]
     },
     {
@@ -60,7 +60,7 @@
       "depends_on": ["lint"],
       "commands": [
         "npm run test",
-	"npm run coverage"
+        "npm run coverage"
       ]
     },
   ]
