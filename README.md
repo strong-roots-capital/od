@@ -1,5 +1,5 @@
 # od
-[![Build Status](https://cloud.drone.io/api/badges/strong-roots-capital/od/status.svg)](https://cloud.drone.io/strong-roots-capital/od)
+![Build Status](https://github.com/github/docs/actions/workflows/ci.yml/badge.svg)
 [![NPM Package][]](https://npmjs.org/package/od)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
 [![NPM Downloads][]](https://www.npmjs.com/package/od)

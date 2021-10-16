@@ -6,8 +6,8 @@
     "types": "lib/src/index.js",
     "sideEffects": false,
     "scripts": {
-        "prepublishOnly": "npm run clean && npm run compile",
-        "compile": "tsc --build .",
+        "prepublishOnly": "npm run clean && npm run build",
+        "build": "tsc --build .",
         "clean": "rimraf --no-glob lib",
         "ava": "ava -s -v",
         "lint": "eslint --ext ts .",
