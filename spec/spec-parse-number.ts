@@ -11,15 +11,15 @@ import { parseNumber } from '../src/parse'
  ********************************************************************/
 
 testProp(
-    'should act as identity when given a number',
-    [fc.oneof(fc.float(), fc.integer())],
-    (t, value) => {
-        t.is(value, parseNumber(value))
-    },
-    {
-        verbose: true,
-        numRuns: 1000
-    }
+  'should act as identity when given a number',
+  [fc.oneof(fc.float(), fc.integer())],
+  (t, value) => {
+    t.is(value, parseNumber(value))
+  },
+  {
+    verbose: true,
+    numRuns: 1000,
+  },
 )
 
 /*********************************************************************
@@ -27,11 +27,9 @@ testProp(
  ********************************************************************/
 
 testProp(
-    'should throw error when given a non-number',
-    [
-        fc.oneof(fc.string(), fc.object(), fc.boolean())
-    ],
-    (t, value) => {
-        t.throws(() => parseNumber(value))
-    }
+  'should throw error when given a non-number',
+  [fc.oneof(fc.string(), fc.object(), fc.boolean())],
+  (t, value) => {
+    t.throws(() => parseNumber(value))
+  },
 )

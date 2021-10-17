@@ -1,1 +1,5 @@
 *.d.ts
+.eslintrc.json
+package.json
+package-lock.json
+tsconfig.json
