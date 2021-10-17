@@ -1,6 +1,6 @@
 {
     "name": "od",
-    "version": "4.0.4",
+    "version": "0.0.0-development",
     "description": "Oh dear, another date library",
     "main": "lib/src/index.js",
     "types": "lib/src/index.js",
@@ -15,7 +15,8 @@
         "size": "size-limit",
         "coverage": "nyc report --all --reporter=text-lcov > coverage.lcov && codecov",
         "push-with-tags": "git push origin master && git push origin --tags",
-        "push-and-publish": "npm run push-with-tags && npm publish"
+        "push-and-publish": "npm run push-with-tags && npm publish",
+        "semantic-release": "semantic-release"
     },
     "repository": {
         "type": "git",
@@ -31,6 +32,7 @@
     },
     "homepage": "https://github.com/strong-roots-capital/od",
     "devDependencies": {
+        "@semantic-release/git": "^10.0.0",
         "@size-limit/preset-small-lib": "^5.0.3",
         "@types/node": "^14.11.10",
         "@typescript-eslint/eslint-plugin": "^4.12.0",
@@ -48,7 +50,8 @@
         "ts-node": "^9.0.0",
         "ts-pattern": "^1.1.0",
         "tslib": "^2.0.3",
-        "typescript": "^4.3.2"
+        "typescript": "^4.3.2",
+        "semantic-release": "^18.0.0"
     },
     "files": [
         "lib/src"
