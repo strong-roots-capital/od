@@ -11,21 +11,21 @@ import { startOf } from './start-of'
 import { distance } from './distance'
 
 type D = {
-    of: typeof of;
-    add: typeof add;
-    subtract: typeof subtract;
-    get: typeof get;
-    startOf: typeof startOf;
-    distance: typeof distance;
+  of: typeof of
+  add: typeof add
+  subtract: typeof subtract
+  get: typeof get
+  startOf: typeof startOf
+  distance: typeof distance
 }
 
 const D: D = {
-    of,
-    add,
-    subtract,
-    get,
-    startOf,
-    distance
+  of,
+  add,
+  subtract,
+  get,
+  startOf,
+  distance,
 }
 
 export default D

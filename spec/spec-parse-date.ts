@@ -11,16 +11,14 @@ import { parseDate } from '../src/parse'
  ********************************************************************/
 
 testProp(
-    'should act as identity when given a Date',
-    [
-        fc.date()
-    ],
-    (t, value) => {
-        t.is(value.toISOString(), parseDate(value).toISOString())
-    },
-    {
-        numRuns: 1000
-    }
+  'should act as identity when given a Date',
+  [fc.date()],
+  (t, value) => {
+    t.is(value.toISOString(), parseDate(value).toISOString())
+  },
+  {
+    numRuns: 1000,
+  },
 )
 
 /*********************************************************************
@@ -28,11 +26,9 @@ testProp(
  ********************************************************************/
 
 testProp(
-    'should throw error when given a non-Date',
-    [
-        fc.oneof(fc.string(), fc.object(), fc.boolean(), fc.float())
-    ],
-    (t, value) => {
-        t.throws(() => parseDate(value))
-    }
+  'should throw error when given a non-Date',
+  [fc.oneof(fc.string(), fc.object(), fc.boolean(), fc.float())],
+  (t, value) => {
+    t.throws(() => parseDate(value))
+  },
 )
