@@ -21,12 +21,6 @@
     "downlevelIteration": true,
     "removeComments": true,
     "strict": true,
-    "baseUrl": "./",
-    "paths": {
-      "*": [
-        "src/@types/*"
-      ]
-    },
     "esModuleInterop": true
   }
 }

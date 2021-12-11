@@ -60,7 +60,7 @@ It's
 - tested
     - 100% code coverage, property-tested with [fast-check]
 - tiny
-    - 1 kB gzipped
+    - 2 kB gzipped
 - maintained
     - Maintenance becomes simple when scope is kept minimal
 - documented
