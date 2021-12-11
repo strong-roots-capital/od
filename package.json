@@ -47,7 +47,7 @@
     "eslint": "7.32.0",
     "fast-check": "2.17.0",
     "fp-ts": "2.11.5",
-    "lint-staged": "11.2.3",
+    "lint-staged": "11.2.6",
     "nyc": "15.1.0",
     "prettier": "2.5.1",
     "rimraf": "3.0.2",
