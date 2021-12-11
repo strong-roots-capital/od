@@ -52,7 +52,7 @@
     "prettier": "2.5.1",
     "rimraf": "3.0.2",
     "semantic-release": "18.0.0",
-    "size-limit": "5.0.3",
+    "size-limit": "5.0.5",
     "tldrlegal": "1.0.11",
     "ts-node": "10.4.0",
     "ts-pattern": "1.1.0",
