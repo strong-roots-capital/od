@@ -45,7 +45,7 @@
     "ava-fast-check": "4.0.2",
     "codecov": "3.8.3",
     "eslint": "8.6.0",
-    "fast-check": "2.20.0",
+    "fast-check": "2.21.0",
     "fp-ts": "2.11.7",
     "lint-staged": "12.1.7",
     "nyc": "15.1.0",
