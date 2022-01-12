@@ -1,5 +1,5 @@
 # od
-![Build Status](https://github.com/strong-roots-capital/od/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/strong-roots-capital/od/actions/workflows/release.yml/badge.svg?branch=master)
 [![NPM Package][]](https://npmjs.org/package/od)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
 [![NPM Downloads][]](https://www.npmjs.com/package/od)
