@@ -27,7 +27,7 @@ until you find it's unmaintained and inconsistent with
 time-zones. There are plenty more date libraries, maybe you'll find a
 good fit if you keep looking for a few more years...
 
-[moment]: https://github.com/moment/moment
+[moment]: https://momentjs.com/docs/#/-project-status/
 [js-joda]: https://github.com/js-joda/js-joda
 [Good Idea]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Examples
 [dayjs]: https://github.com/iamkun/dayjs
