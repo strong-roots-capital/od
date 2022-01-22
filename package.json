@@ -8,7 +8,7 @@
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build",
     "build": "tsc --build .",
-    "clean": "rimraf --no-glob lib",
+    "clean": "rimraf --no-glob -- lib",
     "ava": "ava -s -v",
     "licenses:check": "jsgl --local .",
     "lint": "eslint --ext json,ts --fix .",
