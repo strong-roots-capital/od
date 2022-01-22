@@ -6,7 +6,7 @@ flycheck_*
 *.*~
 .yo-rc.json
 /lib/
-/.nyc_output
+/coverage/
 /coverage.lcov
 /scratch
 /typedoc
