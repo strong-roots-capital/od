@@ -33,7 +33,11 @@ testProp(
   `should treat all generated ISO strings without milliseconds strings as valid`,
   [fc.date()],
   (t, date) => {
-    t.true(isDatestringInFormatISOWithoutMilliseconds(date.toISOString().slice(0, -5)))
+    t.true(
+      isDatestringInFormatISOWithoutMilliseconds(
+        date.toISOString().replace(/\.\d+Z$/, ''),
+      ),
+    )
   },
   {
     verbose: true,
@@ -45,7 +49,9 @@ testProp(
   `should treat all generated ISO strings without time strings as valid`,
   [fc.date()],
   (t, date) => {
-    t.true(isDatestringInFormatISOWithoutTime(date.toISOString().slice(0, -14)))
+    t.true(
+      isDatestringInFormatISOWithoutTime(date.toISOString().replace(/T[0-9:.]+Z$/, '')),
+    )
   },
   {
     verbose: true,
