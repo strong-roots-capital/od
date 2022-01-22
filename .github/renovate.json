@@ -8,6 +8,13 @@
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
+    },
+    {
+      "matchPackagePatterns": [
+        "^@size-limit/",
+        "^size-limit$"
+      ],
+      "groupName": ["size-limit packages"]
     }
   ],
   "timezone": "America/Chicago",
