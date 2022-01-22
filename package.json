@@ -19,8 +19,6 @@
     "prettier": "prettier --write src/**/*.ts spec/**/*.ts test/**/*.ts",
     "prettier:check": "prettier --list-different src/**/*.ts spec/**/*.ts test/**/*.ts",
     "lint-staged": "lint-staged",
-    "push-with-tags": "git push origin master && git push origin --tags",
-    "push-and-publish": "npm run push-with-tags && npm publish",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -64,7 +62,6 @@
   ],
   "ava": {
     "files": [
-      "!dist/**/*.d.ts",
       "test/**/test-*.ts",
       "spec/**/spec-*.ts"
     ],
