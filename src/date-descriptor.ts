@@ -56,7 +56,7 @@ function completeDateDescriptor(value: DateDescriptor): CompleteDateDescriptor {
   return {
     year: value.year,
     month: (value as CompleteDateDescriptor).month || 0,
-    date: (value as CompleteDateDescriptor).date || 1,
+    date: (value as CompleteDateDescriptor).date ?? 1,
     hour: (value as CompleteDateDescriptor).hour || 0,
     minute: (value as CompleteDateDescriptor).minute || 0,
     second: (value as CompleteDateDescriptor).second || 0,
