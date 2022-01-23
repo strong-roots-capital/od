@@ -41,5 +41,3 @@ export const startOf = curry(function startOf(
       )
   }
 })
-
-//  LocalWords:  ResetableUnitOfTime

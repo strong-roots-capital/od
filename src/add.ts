@@ -85,5 +85,3 @@ export const add = curry(function add(
       )
   }
 })
-
-//  LocalWords:  unitOfTime

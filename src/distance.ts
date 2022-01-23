@@ -33,5 +33,3 @@ export const distance = curry(function distance(
       )
   }
 })
-
-//  LocalWords:  UnitOfTime

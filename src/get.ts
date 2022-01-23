@@ -33,5 +33,3 @@ export const get = curry(function get(
       )
   }
 })
-
-//  LocalWords:  AccessibleUnitOfTime

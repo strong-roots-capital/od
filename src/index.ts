@@ -29,5 +29,3 @@ const D: D = {
 }
 
 export default D
-
-//  LocalWords:  od
