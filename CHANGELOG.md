@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/strong-roots-capital/od/compare/v6.0.0...v6.0.1) (2022-01-23)
+
+
+### Bug Fixes
+
+* point main and types to correct location ([42cf1ae](https://github.com/strong-roots-capital/od/commit/42cf1aeeef6a6727b2891017265e4985b542b3a1))
+
 # [6.0.0](https://github.com/strong-roots-capital/od/compare/v5.0.0...v6.0.0) (2022-01-23)
 
 
