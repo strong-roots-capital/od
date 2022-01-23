@@ -6,7 +6,6 @@
   "types": "lib/src/index.js",
   "sideEffects": false,
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run build",
     "benchmark": "ts-node perf/add.ts",
     "build": "tsc --build .",
     "clean": "rimraf --no-glob -- lib",
