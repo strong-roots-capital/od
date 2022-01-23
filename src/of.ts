@@ -46,5 +46,3 @@ export function of(value: number | string | Readonly<DateDescriptor>): Date {
     `Expected argument to be of type number or string or DateDescriptor, got '${value}'`,
   )
 }
-
-//  LocalWords:  DateDescriptor

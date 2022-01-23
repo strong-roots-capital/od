@@ -104,5 +104,3 @@ export function dateDescriptorAsDate(descriptor: DateDescriptor): Date {
 export function dateStringAsDate(datestring: string): Date {
   return dateDescriptorAsDate(dateStringAsDateDescriptor(datestring))
 }
-
-//  LocalWords:  DateDescriptor
