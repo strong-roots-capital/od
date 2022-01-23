@@ -1,0 +1,37 @@
+name: performance
+
+on:
+  push:
+    branches: [ master, alpha, beta ]
+
+jobs:
+  benchmark:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - name: Run benchmark
+        run: |
+          npm ci
+          npm run benchmark | tee benchmark.txt
+      - name: Download previous benchmark data
+        uses: actions/cache@v1
+        with:
+          path: ./cache
+          key: ${{ runner.os }}-benchmark
+      - name: Store benchmark result
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          # What benchmark tool the output.txt came from
+          tool: 'benchmarkjs'
+          # Where the output from the benchmark tool is stored
+          output-file-path: benchmark.txt
+          # Where the previous data file is stored
+          external-data-json-path: ./cache/benchmark-data.json
+          # Workflow will fail when an alert happens
+          fail-on-alert: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-on-alert: true
+          alert-comment-cc-users: '@ericcrosson'

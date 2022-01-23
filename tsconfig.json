@@ -2,6 +2,7 @@
   "include": [
     "src/**/*",
     "test/**/*",
+    "perf/**/*",
     "spec/**/*"
   ],
   "exclude": [
@@ -12,6 +13,7 @@
     "target": "es5",
     "module": "commonjs",
     "lib": [
+      "dom",
       "es2021"
     ],
     "declaration": true,
