@@ -2,8 +2,8 @@
   "name": "od",
   "version": "4.0.7",
   "description": "Oh dear, another date library",
-  "main": "lib/src/index.js",
-  "types": "lib/src/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.js",
   "sideEffects": false,
   "scripts": {
     "benchmark": "ts-node perf/add.ts",
@@ -19,7 +19,8 @@
     "prettier": "prettier --write src/**/*.ts spec/**/*.ts test/**/*.ts",
     "prettier:check": "prettier --list-different src/**/*.ts spec/**/*.ts test/**/*.ts",
     "lint-staged": "lint-staged",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "prepublishOnly": "scripts/bundle"
   },
   "repository": {
     "type": "git",
@@ -64,7 +65,10 @@
     "typescript": "4.5.5"
   },
   "files": [
-    "lib/src"
+    "*.js",
+    "*.js.map",
+    "*.d.ts",
+    "*.d.ts.map"
   ],
   "ava": {
     "files": [
