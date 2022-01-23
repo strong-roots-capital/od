@@ -21,6 +21,37 @@ of the largest, modern browsers.
 This is technically a breaking change but is expected to be of no
 impact to most users.
 
+## 5.0.0 (2022-01-23)
+
+
+### Refactors
+
+* flatten the dir structure of published files
+
+
+### BREAKING CHANGES
+
+* flatten the directory structure of the published
+files, which affects the single-function imports.
+
+What used to be imported in v4 as
+
+```typescript
+import { add } from 'od/lib/src/add'
+```
+
+is now imported as
+
+```typescript
+import { add } from 'od/add'
+```
+
+While inconvenient, this is hopefully search/replaceable with a tool
+like [amber](https://github.com/dalance/amber), and will foster
+a simpler developer experience moving forward.
+
+Thank you for your understanding!
+
 ## [4.0.7](https://github.com/strong-roots-capital/od/compare/v4.0.6...v4.0.7) (2022-01-22)
 
 
