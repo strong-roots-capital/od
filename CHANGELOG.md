@@ -21,10 +21,12 @@ of the largest, modern browsers.
 This is technically a breaking change but is expected to be of no
 impact to most users.
 
-## 5.0.0 (2022-01-23)
+
+# 5.0.0 (2022-01-23)
 
 
 ### Refactors
+
 
 * flatten the dir structure of published files
 
@@ -51,6 +53,7 @@ like [amber](https://github.com/dalance/amber), and will foster
 a simpler developer experience moving forward.
 
 Thank you for your understanding!
+
 
 ## [4.0.7](https://github.com/strong-roots-capital/od/compare/v4.0.6...v4.0.7) (2022-01-22)
 
