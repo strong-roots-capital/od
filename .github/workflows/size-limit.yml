@@ -1,4 +1,4 @@
-name: "size-limit"
+name: size-limit
 
 on: [ pull_request ]
 
