@@ -1,3 +1,19 @@
+# [6.0.0](https://github.com/strong-roots-capital/od/compare/v5.0.0...v6.0.0) (2022-01-23)
+
+
+* feat!: target ES6 JavaScript ([a8f703d](https://github.com/strong-roots-capital/od/commit/a8f703d83cff13e15a44c8392e2c724aea935151)), closes [#133](https://github.com/strong-roots-capital/od/issues/133)
+
+
+### BREAKING CHANGES
+
+* bump the target for compiled JavaScript from
+ES5 to ES6, which should afford smaller code bundles and faster
+runtimes thanks to newer JavaScript features provided by all
+of the largest, modern browsers.
+
+This is technically a breaking change but is expected to be of no
+impact to most users.
+
 ## [4.0.7](https://github.com/strong-roots-capital/od/compare/v4.0.6...v4.0.7) (2022-01-22)
 
 
