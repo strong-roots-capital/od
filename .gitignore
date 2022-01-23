@@ -11,3 +11,7 @@ flycheck_*
 /scratch
 /typedoc
 /.npmrc
+/*.js
+/*.js.map
+/*.d.ts
+/*.d.ts.map

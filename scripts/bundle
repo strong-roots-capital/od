@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# Bundle the compiled JavaScript in preparation of publication to npm
+#
+# Usage:
+#  bundle
+#
+# (no arguments accepted)
+#
+# Preconditions:
+# - assumes `npm run build` has already been run
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+mv lib/src/* .
+rm -r lib

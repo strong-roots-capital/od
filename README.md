@@ -96,7 +96,7 @@ const end = D.add('day', 1, start)
 Or just import the functions you need
 
 ``` typescript
-import { add } from 'od/src/lib/add'
+import { add } from 'od/add'
 ```
 
 ## Documentation
