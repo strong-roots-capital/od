@@ -55,7 +55,7 @@
     "js-green-licenses": "3.0.1",
     "lint-staged": "12.3.5",
     "microtime": "3.0.0",
-    "prettier": "2.5.1",
+    "prettier": "2.6.0",
     "rimraf": "3.0.2",
     "semantic-release": "19.0.2",
     "size-limit": "7.0.8",
