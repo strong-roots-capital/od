@@ -15,6 +15,10 @@
         "^size-limit$"
       ],
       "groupName": ["size-limit packages"]
+    },
+    {
+      "matchPackagePatterns": ["ava", "ava-fast-check"],
+      "groupName": ["ava packages"]
     }
   ],
   "timezone": "America/Chicago",
