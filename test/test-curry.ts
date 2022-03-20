@@ -24,13 +24,13 @@ test('should act as identity function when passed zero arguments', (t) => {
 
 test('should act as identity when passed function with zero arguments', (t) => {
   const fn = curry(() => void 0)
-  t.is(fn(), undefined)
+  t.is(fn(void 0), undefined)
 })
 
 test('should curry unary function', (t) => {
   const fn = curry(id)
   const a = 5
-  t.is(a, fn(a))
+  t.is(a as unknown, fn(a))
 })
 
 test('should throw error when passed function with more than three arguments', (t) => {
