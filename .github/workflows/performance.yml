@@ -17,7 +17,7 @@ jobs:
           npm ci
           npm run benchmark | tee benchmark.txt
       - name: Download previous benchmark data
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./cache
           key: ${{ runner.os }}-benchmark
