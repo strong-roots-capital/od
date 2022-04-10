@@ -44,7 +44,7 @@
     "@types/benchmark": "2.1.1",
     "@typescript-eslint/eslint-plugin": "5.18.0",
     "@typescript-eslint/parser": "5.18.0",
-    "ava": "4.1.0",
+    "ava": "4.2.0",
     "ava-fast-check": "5.0.0",
     "benchmark": "2.1.4",
     "c8": "7.11.0",
