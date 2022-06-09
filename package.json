@@ -57,7 +57,7 @@
     "microtime": "3.0.0",
     "prettier": "2.6.2",
     "rimraf": "3.0.2",
-    "semantic-release": "19.0.2",
+    "semantic-release": "19.0.3",
     "size-limit": "7.0.8",
     "ts-node": "10.8.1",
     "ts-pattern": "4.0.3",
