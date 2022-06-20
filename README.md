@@ -1,13 +1,14 @@
 # od
+
 ![Build Status](https://github.com/strong-roots-capital/od/actions/workflows/release.yml/badge.svg?branch=master)
 [![NPM Package][]](https://npmjs.org/package/od)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
 [![NPM Downloads][]](https://www.npmjs.com/package/od)
 [![wakatime](https://wakatime.com/badge/github/strong-roots-capital/od.svg)](https://wakatime.com/badge/github/strong-roots-capital/od)
 
-[NPM Package]: https://img.shields.io/npm/v/od.svg
-[Code Coverage]: https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg
-[NPM Downloads]: https://img.shields.io/npm/dm/od
+[npm package]: https://img.shields.io/npm/v/od.svg
+[code coverage]: https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg
+[npm downloads]: https://img.shields.io/npm/dm/od
 
 > Oh dear, another date library
 
@@ -29,7 +30,7 @@ good fit if you keep looking for a few more years...
 
 [moment]: https://momentjs.com/docs/#/-project-status/
 [js-joda]: https://github.com/js-joda/js-joda
-[Good Idea]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Examples
+[good idea]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Examples
 [dayjs]: https://github.com/iamkun/dayjs
 [date-fns]: https://github.com/date-fns/date-fns
 [date-fp]: https://github.com/cullophid/date-fp
@@ -44,39 +45,39 @@ Don't over-dose on the existing headaches, say hello to `od`!
 It's
 
 - immutable
-    - Every function returns a new Date object
+  - Every function returns a new Date object
 - consistent
-    - UTC everywhere. Let's all just ignore everything else.
+  - UTC everywhere. Let's all just ignore everything else.
 - intuitive
-    - Guides developers away from [common pitfalls]
+  - Guides developers away from [common pitfalls]
 - fast
-    - As fast as you can get with the core libraries
+  - As fast as you can get with the core libraries
 - transparent
-    - Uses standard [JavaScript Date] objects everywhere
+  - Uses standard [JavaScript Date] objects everywhere
 - typed
-    - Conceived in TypeScript, for TypeScript
+  - Conceived in TypeScript, for TypeScript
 - simple
-    - Each function has one job and does it well
+  - Each function has one job and does it well
 - tested
-    - 100% code coverage, property-tested with [fast-check]
+  - 100% code coverage, property-tested with [fast-check]
 - tiny
-    - 2 kB gzipped
+  - 2 kB gzipped
 - maintained
-    - Maintenance becomes simple when scope is kept minimal
+  - Maintenance becomes simple when scope is kept minimal
 - documented
-    - On this very [readme]
+  - On this very [readme]
 - curried
-    - All functions support [partial-application]
+  - All functions support [partial-application]
 - dependency-free
-    - [Zero dependencies] were used in the making of this library
+  - [Zero dependencies] were used in the making of this library
 
-[JavaScript Date]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+[javascript date]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 [common pitfalls]: doc/documentation.md
 [fast-check]: https://github.com/dubzzz/fast-check
 [readme]: #documentation
 [partial-application]: https://en.wikipedia.org/wiki/Partial_application
-[Rollup]: https://github.com/rollup/rollup
-[Zero dependencies]: https://david-dm.org/strong-roots-capital/od
+[rollup]: https://github.com/rollup/rollup
+[zero dependencies]: https://david-dm.org/strong-roots-capital/od
 
 ## Install
 
@@ -95,7 +96,7 @@ const end = D.add('day', 1, start)
 
 Or just import the functions you need
 
-``` typescript
+```typescript
 import { add } from 'od/add'
 ```
 
@@ -133,7 +134,7 @@ import { add } from 'od/add'
 
 <details><summary><code>of :: number | string | DateDescriptor -> Date</code></summary>
 
-``` hs
+```hs
 of :: number -> Date
 of :: string -> Date
 of :: DateDescriptor -> Date
@@ -143,11 +144,11 @@ of :: DateDescriptor -> Date
 
 Creates a Date object representing the specified date.
 
-``` typescript
-D.of(0)                      //=> 1970-01-01T00:00:00.000Z
-D.of('1912-04-15')           //=> 1912-04-15T00:00:00.000Z
-D.of('1969-07-20T20:17:00')  //=> 1969-07-20T20:17:00.000Z
-D.of({year: 1984})           //=> 1984-01-01T00:00:00.000Z
+```typescript
+D.of(0) //=> 1970-01-01T00:00:00.000Z
+D.of('1912-04-15') //=> 1912-04-15T00:00:00.000Z
+D.of('1969-07-20T20:17:00') //=> 1969-07-20T20:17:00.000Z
+D.of({ year: 1984 }) //=> 1984-01-01T00:00:00.000Z
 ```
 
 Rules:
@@ -173,7 +174,7 @@ Read more in the [additional documentation](doc/documentation.md#of).
 
 <details><summary><code>add :: UnitOfTime -> number -> Date -> Date</code></summary>
 
-``` hs
+```hs
 add :: UnitOfTime -> number -> Date -> Date
 ```
 
@@ -182,8 +183,8 @@ add :: UnitOfTime -> number -> Date -> Date
 Increments the given date by the specified number of time units, and
 returns a new Date with the new value.
 
-``` typescript
-add('month', 2, D.of({year: 2000}))  //=> 2000-03-01T00:00:00.000Z
+```typescript
+add('month', 2, D.of({ year: 2000 })) //=> 2000-03-01T00:00:00.000Z
 ```
 
 Supported time units:
@@ -203,7 +204,7 @@ month, the day of the month for the output date will be set to the
 last day in the output month.
 
 ```typescript
-add('month', 1, D.of('2000-01-31'))  //=> 2000-02-29T00:00:00.000Z
+add('month', 1, D.of('2000-01-31')) //=> 2000-02-29T00:00:00.000Z
 ```
 
 Read more in the [additional documentation](doc/documentation.md#add).
@@ -212,7 +213,7 @@ Read more in the [additional documentation](doc/documentation.md#add).
 
 <details><summary><code>subtract :: UnitOfTime -> number -> Date -> Date</code></summary>
 
-``` hs
+```hs
 subtract :: UnitOfTime -> number -> Date -> Date
 ```
 
@@ -221,8 +222,8 @@ subtract :: UnitOfTime -> number -> Date -> Date
 Decrements the given date by the specified number of time units, and
 returns a new Date with the new value.
 
-``` typescript
-subtract('month', 2, D.of({year: 2000}))  //=> 1999-11-01T00:00:00.000Z
+```typescript
+subtract('month', 2, D.of({ year: 2000 })) //=> 1999-11-01T00:00:00.000Z
 ```
 
 Supported time units:
@@ -240,7 +241,7 @@ Supported time units:
 
 <details><summary><code>startOf :: ResetableUnitOfTime -> Date -> Date</code></summary>
 
-``` hs
+```hs
 startOf :: ResetableUnitOfTime -> Date -> Date
 ```
 
@@ -249,8 +250,8 @@ startOf :: ResetableUnitOfTime -> Date -> Date
 Reset a date back in time to the start of the specified time unit and
 returns a Date with the new value.
 
-``` typescript
-startOf('year', D.of('1911-05-25'))  //=> 1911-01-01T00:00:00.000Z
+```typescript
+startOf('year', D.of('1911-05-25')) //=> 1911-01-01T00:00:00.000Z
 ```
 
 Supported time units:
@@ -269,7 +270,7 @@ Supported time units:
 
 <details><summary><code>distance :: UnitOfTime -> Date -> Date -> number</code></summary>
 
-``` hs
+```hs
 distance :: UnitOfTime -> Date -> Date -> number
 ```
 
@@ -277,8 +278,8 @@ distance :: UnitOfTime -> Date -> Date -> number
 
 Returns the number of time-units between the first date and the second.
 
-``` typescript
-distance('month', D.of('1914-07-11'), D.of('1939-09-01'))  //=> 302
+```typescript
+distance('month', D.of('1914-07-11'), D.of('1939-09-01')) //=> 302
 ```
 
 Supported time units:
@@ -298,7 +299,7 @@ Supported time units:
 
 <details><summary><code>get :: AccessibleUnitOfTime -> Date -> Date</code></summary>
 
-``` hs
+```hs
 get :: AccessibleUnitOfTime -> Date -> Date
 ```
 
@@ -306,8 +307,8 @@ get :: AccessibleUnitOfTime -> Date -> Date
 
 Returns the numeric value of the specified property of the supplied date.
 
-``` typescript
-get('month', D.of('1945-11-05'))  //=> 10
+```typescript
+get('month', D.of('1945-11-05')) //=> 10
 ```
 
 Supported time units:
@@ -330,8 +331,9 @@ If you cause a `Date` overflow or underflow, `od` will return an
 `Invalid Date` object. You can test for invalid dates with the
 following code
 
-``` typescript
-declare invalidDate: Date
+```typescript
+declare
+invalidDate: Date
 if (Number.isNaN(invalidDate.getTime())) {
   // `invalidDate` is invalid
 }

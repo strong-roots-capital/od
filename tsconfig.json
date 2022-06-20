@@ -1,21 +1,10 @@
 {
-  "include": [
-    "src/**/*",
-    "test/**/*",
-    "perf/**/*",
-    "spec/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
+  "include": ["src/**/*", "test/**/*", "perf/**/*", "spec/**/*"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "es2021"
-    ],
+    "lib": ["dom", "es2021"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

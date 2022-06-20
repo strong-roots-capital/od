@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
   "labels": ["dependencies"],
   "assignees": ["@ericcrosson"],
   "packageRules": [
@@ -10,10 +8,7 @@
       "automerge": true
     },
     {
-      "matchPackagePatterns": [
-        "^@size-limit/",
-        "^size-limit$"
-      ],
+      "matchPackagePatterns": ["^@size-limit/", "^size-limit$"],
       "groupName": ["size-limit packages"]
     },
     {
@@ -22,9 +17,5 @@
     }
   ],
   "timezone": "America/Chicago",
-  "schedule": [
-    "after 10pm every weekday",
-    "before 5am every weekday",
-    "every weekend"
-  ]
+  "schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"]
 }

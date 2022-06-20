@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [ master, alpha, beta ]
+    branches: [master, alpha, beta]
 
 jobs:
   release:
@@ -22,9 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Lint code
-        run: npm run lint:check
+        run: npm run lint
       - name: Format code
-        run: npm run prettier:check
+        run: npm run format
       - name: Compile TypeScript
         run: npm run build
       - name: Test
