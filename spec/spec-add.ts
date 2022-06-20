@@ -49,42 +49,42 @@ function isValidDate(date: Date): boolean {
 
 testProp(
   'should add any number of milliseconds to a given date',
-  [fc.oneof(fc.float(), fc.integer()), fc.date()],
+  [fc.oneof(fc.float(), fc.integer()).filter((num) => !Number.isNaN(num)), fc.date()],
   assert('millisecond'),
   { verbose: true },
 )
 
 testProp(
   'should add any number of seconds to a given date',
-  [fc.oneof(fc.float(), fc.integer()), fc.date()],
+  [fc.oneof(fc.float(), fc.integer()).filter((num) => !Number.isNaN(num)), fc.date()],
   assert('second'),
   { verbose: true },
 )
 
 testProp(
   'should add any number of minutes to a given date',
-  [fc.oneof(fc.float(), fc.integer()), fc.date()],
+  [fc.oneof(fc.float(), fc.integer()).filter((num) => !Number.isNaN(num)), fc.date()],
   assert('minute'),
   { verbose: true },
 )
 
 testProp(
   'should add any number of hours to a given date',
-  [fc.oneof(fc.float(), fc.integer()), fc.date()],
+  [fc.oneof(fc.float(), fc.integer()).filter((num) => !Number.isNaN(num)), fc.date()],
   assert('hour'),
   { verbose: true },
 )
 
 testProp(
   'should add any number of days to a given date',
-  [fc.oneof(fc.float(), fc.integer()), fc.date()],
+  [fc.oneof(fc.float(), fc.integer()).filter((num) => !Number.isNaN(num)), fc.date()],
   assert('day'),
   { verbose: true },
 )
 
 testProp(
   'should add any number of weeks to a given date',
-  [fc.oneof(fc.float(), fc.integer()), fc.date()],
+  [fc.oneof(fc.float(), fc.integer()).filter((num) => !Number.isNaN(num)), fc.date()],
   assert('week'),
   { verbose: true },
 )
@@ -93,7 +93,10 @@ testProp(
   'should add any number of months to a given date',
   [
     fc
-      .tuple(fc.oneof(fc.float(), fc.integer()), fc.date())
+      .tuple(
+        fc.oneof(fc.float(), fc.integer()).filter((num) => !Number.isNaN(num)),
+        fc.date(),
+      )
       .filter(([monthsToAdd, d]) =>
         isValidDate(new Date(get('year', d), get('month', d) + monthsToAdd, 1)),
       ),
@@ -142,7 +145,10 @@ testProp(
   'should add any number of years to a given date',
   [
     fc
-      .tuple(fc.oneof(fc.float(), fc.integer()), fc.date())
+      .tuple(
+        fc.oneof(fc.float(), fc.integer()).filter((num) => !Number.isNaN(num)),
+        fc.date(),
+      )
       .filter(([yearsToAdd, d]) =>
         isValidDate(new Date(get('year', d) + yearsToAdd, 0, 1)),
       ),

@@ -2,11 +2,10 @@ name: performance
 
 on:
   push:
-    branches: [ master, alpha, beta ]
+    branches: [master, alpha, beta]
 
 jobs:
   benchmark:
-
     runs-on: ubuntu-latest
 
     steps:
