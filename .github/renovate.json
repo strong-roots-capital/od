@@ -12,7 +12,7 @@
       "groupName": ["size-limit packages"]
     },
     {
-      "matchPackagePatterns": ["ava", "ava-fast-check"],
+      "matchPackagePatterns": ["ava", "ava-fast-check", "fast-check"],
       "groupName": ["ava packages"]
     }
   ],
