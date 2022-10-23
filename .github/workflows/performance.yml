@@ -4,6 +4,10 @@ on:
   push:
     branches: [master, alpha, beta]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   benchmark:
     runs-on: ubuntu-latest
