@@ -1,4 +1,5 @@
 /.direnv
+/.pre-commit-config.yaml
 .DS_Store
 node_modules/
 flycheck_*
