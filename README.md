@@ -1,12 +1,9 @@
 # od
 
 ![Build Status](https://github.com/strong-roots-capital/od/actions/workflows/release.yml/badge.svg?branch=master)
-[![NPM Package][]](https://npmjs.org/package/od)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
 [![NPM Downloads][]](https://www.npmjs.com/package/od)
-[![wakatime](https://wakatime.com/badge/github/strong-roots-capital/od.svg)](https://wakatime.com/badge/github/strong-roots-capital/od)
 
-[npm package]: https://img.shields.io/npm/v/od.svg
 [code coverage]: https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg
 [npm downloads]: https://img.shields.io/npm/dm/od
 
