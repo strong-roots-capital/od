@@ -32,4 +32,5 @@ export const distance = curry(function distance(
         `Expected argument 'unit' to be of type '${unitsOfTime.join(' | ')}'`,
       )
   }
+  /* c8 ignore start */
 })

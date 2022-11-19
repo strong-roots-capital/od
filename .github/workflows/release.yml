@@ -30,8 +30,6 @@ jobs:
         run: npm run build
       - name: Test
         run: npm test
-      - name: Upload code coverage
-        run: npm run coverage
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

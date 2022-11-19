@@ -1,11 +1,9 @@
 # od
 
 [![Build Status]](https://github.com/strong-roots-capital/od/actions/workflows/release.yml)
-[![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
 [![NPM Downloads][]](https://www.npmjs.com/package/od)
 
 [build status]: https://github.com/strong-roots-capital/od/actions/workflows/release.yml/badge.svg?event=push
-[code coverage]: https://codecov.io/gh/strong-roots-capital/od/branch/master/graph/badge.svg
 [npm downloads]: https://img.shields.io/npm/dm/od
 
 > Oh dear, another date library
