@@ -9,9 +9,8 @@
     "benchmark": "ts-node perf/add.ts",
     "build": "tsc --build .",
     "clean": "rm -rf -- lib",
-    "ava": "ava -s -v",
     "licenses:check": "jsgl --local .",
-    "test": "c8 ava && npm run size && npm run licenses:check",
+    "test": "c8 node --require ts-node/register --test test/property/* test/unit/* && npm run size && npm run licenses:check",
     "size": "size-limit",
     "lint-staged": "lint-staged",
     "semantic-release": "semantic-release",
@@ -38,8 +37,6 @@
     "@size-limit/preset-small-lib": "8.1.0",
     "@types/benchmark": "2.1.2",
     "@types/node": "18.11.9",
-    "ava": "5.1.0",
-    "ava-fast-check": "6.0.0",
     "benchmark": "2.1.4",
     "c8": "7.12.0",
     "fast-check": "3.3.0",
@@ -60,18 +57,6 @@
     "*.d.ts",
     "*.d.ts.map"
   ],
-  "ava": {
-    "files": [
-      "test/**/test-*.ts",
-      "spec/**/spec-*.ts"
-    ],
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
-  },
   "publishConfig": {
     "access": "public"
   },

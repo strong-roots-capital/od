@@ -20,16 +20,23 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          # Node.js 18 has a seg-fault when tracking code coverage
+          # so use Node.js 16 for now
+          node-version: lts/-1
+
       - name: Install dependencies
         run: npm ci
+
       - name: Compile TypeScript
         run: npm run build
+
       - name: Test
         run: npm test
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

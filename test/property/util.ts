@@ -1,4 +1,4 @@
-import { DateDescriptor } from '../src/date-descriptor'
+import { DateDescriptor } from '../../src/date-descriptor'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function not<F extends (...args: any[]) => boolean>(f: F): F {

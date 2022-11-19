@@ -12,7 +12,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [lts/-2, lts/-1, lts/*]
+        node-version:
+          # Node.js 14 does not support the built-in test runner yet
+          # - lts/-2
+          - lts/-1
+          # Node.js 18 has a seg-fault when tracking code coverage
+          # - lts/*
 
     steps:
       - uses: actions/checkout@v3
