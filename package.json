@@ -14,8 +14,6 @@
     "test": "c8 --include 'src/**/*.ts' ava && npm run size && npm run licenses:check",
     "size": "size-limit",
     "coverage": "c8 report --include 'src/**/*.ts' --all --reporter=text-lcov > coverage.lcov && codecov",
-    "format:fix": "prettier --write --ignore-unknown .",
-    "format": "prettier --list-different --ignore-unknown .",
     "lint-staged": "lint-staged",
     "semantic-release": "semantic-release",
     "prepublishOnly": "scripts/bundle"
@@ -51,7 +49,6 @@
     "js-green-licenses": "3.0.1",
     "lint-staged": "13.0.3",
     "microtime": "3.1.1",
-    "prettier": "2.7.1",
     "rimraf": "3.0.2",
     "semantic-release": "19.0.5",
     "size-limit": "8.1.0",
