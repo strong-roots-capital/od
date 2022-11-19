@@ -1,6 +1,6 @@
 # od
 
-![Build Status](https://github.com/strong-roots-capital/od/actions/workflows/release.yml)
+[![Build Status]](https://github.com/strong-roots-capital/od/actions/workflows/release.yml)
 [![Code Coverage][]](https://codecov.io/gh/strong-roots-capital/od)
 [![NPM Downloads][]](https://www.npmjs.com/package/od)
 
