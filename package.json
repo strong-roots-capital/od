@@ -42,7 +42,7 @@
     "fast-check": "3.3.0",
     "fp-ts": "2.13.1",
     "js-green-licenses": "3.0.1",
-    "lint-staged": "13.0.3",
+    "lint-staged": "13.0.4",
     "microtime": "3.1.1",
     "semantic-release": "19.0.5",
     "size-limit": "8.1.0",
