@@ -12,7 +12,6 @@
     "licenses:check": "jsgl --local .",
     "test": "c8 node --require ts-node/register --test test/property/* test/unit/* && npm run size && npm run licenses:check",
     "size": "size-limit",
-    "semantic-release": "semantic-release",
     "prepublishOnly": "scripts/bundle"
   },
   "repository": {
