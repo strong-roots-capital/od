@@ -28,8 +28,16 @@ jobs:
           # so use Node.js 16 for now
           node-version: lts/-1
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ github.ref_name }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Install npm dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
 
       - name: Compile TypeScript
         run: npm run build

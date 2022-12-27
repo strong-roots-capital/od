@@ -15,12 +15,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Use Latest Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ github.ref_name }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Install npm dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
 
       - name: Run benchmark
-        run: |
-          npm ci
-          npm run benchmark | tee benchmark.txt
+        run: npm run benchmark | tee benchmark.txt
 
       - name: Download previous benchmark data
         uses: actions/cache@v3
