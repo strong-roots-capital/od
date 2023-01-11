@@ -9,8 +9,7 @@
     "benchmark": "ts-node perf/add.ts",
     "build": "tsc --build .",
     "clean": "rm -rf -- lib",
-    "licenses:check": "jsgl --local .",
-    "test": "c8 node --require ts-node/register --test test/property/* test/unit/* && npm run size && npm run licenses:check",
+    "test": "c8 node --require ts-node/register --test test/property/* test/unit/* && npm run size",
     "size": "size-limit",
     "prepublishOnly": "scripts/bundle"
   },
@@ -37,7 +36,6 @@
     "c8": "7.12.0",
     "fast-check": "3.5.0",
     "fp-ts": "2.13.1",
-    "js-green-licenses": "3.0.1",
     "microtime": "3.1.1",
     "semantic-release": "19.0.5",
     "size-limit": "8.1.0",
