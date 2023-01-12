@@ -4,45 +4,10 @@ name: CI
 on:
   pull_request:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version:
-          # Node.js 14 does not support the built-in test runner yet
-          # - lts/-2
-          - lts/-1
-          # Node.js 18 has a seg-fault when tracking code coverage
-          # - lts/*
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Cache npm dependencies
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-
-      - name: Install npm dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm ci --ignore-scripts
-
-      - name: Compile TypeScript
-        run: npm run build
-
-      - name: Test
-        run: npm test
+  test:
+    uses: EricCrosson/typescript-action/.github/workflows/ci.yml@v1
+    with:
+      # The native test runner is not yet in lts/-2
+      # There's a bug in Node.js 18 to be fixed Nov 29, so don't test with v18
+      node-versions: "['lts/-1']"
