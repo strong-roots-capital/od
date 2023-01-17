@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    uses: semantic-release-action/typescript/.github/workflows/ci.yml@v1
+    uses: semantic-release-action/typescript/.github/workflows/ci.yml@v2
     with:
       # The native test runner is not yet in lts/-2
       # There's a bug in Node.js 18 to be fixed Nov 29, so don't test with v18
