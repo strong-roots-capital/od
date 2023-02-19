@@ -14,10 +14,10 @@ on:
 
 jobs:
   release:
-    uses: semantic-release-action/typescript/.github/workflows/release.yml@v2
+    uses: semantic-release-action/typescript/.github/workflows/release.yml@v3
     with:
       # The native test runner is not yet in lts/-2
       # There's a bug in Node.js 18 to be fixed Nov 29, so don't test with v18
-      node-version: lts/-1
+      test-node-versions: "['lts/-1']"
     secrets:
       npm-token: ${{ secrets.NPM_TOKEN }}
