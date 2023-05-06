@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/strong-roots-capital/od/compare/v6.0.1...v6.0.2) (2023-05-06)
+
+
+### Bug Fixes
+
+* **deps:** migrate to semantic-release-action/typescript ([312044d](https://github.com/strong-roots-capital/od/commit/312044dc6d462aa5d9414af801f7516a9c16b0e7))
+
 ## [6.0.1](https://github.com/strong-roots-capital/od/compare/v6.0.0...v6.0.1) (2022-01-23)
 
 
