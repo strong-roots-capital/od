@@ -29,7 +29,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "8.2.4",
     "@types/benchmark": "2.1.2",
-    "@types/node": "18.16.13",
+    "@types/node": "18.16.14",
     "benchmark": "2.1.4",
     "c8": "7.13.0",
     "fast-check": "3.9.0",
