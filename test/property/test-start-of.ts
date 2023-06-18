@@ -2,7 +2,6 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 import fc from 'fast-check'
-import { match } from 'ts-pattern'
 import { Ord as ordDate } from 'fp-ts/Date'
 
 import { not, includedIn } from './util'
@@ -88,20 +87,21 @@ test('should set days to zero after winding date back to start-of week', () => {
       const reset = startOf('week', date)
       const oneWeekAfterEarliestRepresentableDate = add('week', 1, DATE_MIN)
       const order = ordDate.compare(date, oneWeekAfterEarliestRepresentableDate)
-      match(order)
+      switch (order) {
         // when the start of week containing our date is before the
         // earliest-representable date, the start of week should be
         // 'Invalid Date'
-        .with(-1, () => {
+        case -1:
           assert.ok(!isValidDate(reset))
-        })
-        .otherwise(() => {
+          break
+        default:
           assert.equal(0, reset.getUTCDay())
           assert.equal(0, reset.getUTCHours())
           assert.equal(0, reset.getUTCMinutes())
           assert.equal(0, reset.getUTCSeconds())
           assert.equal(0, reset.getUTCMilliseconds())
-        })
+          break
+      }
     }),
     {
       verbose: true,
@@ -119,20 +119,20 @@ test('should set date to zero after winding date back to start-of month', () => 
         const reset = startOf('month', date)
         const oneMonthAfterEarliestRepresenableDate = add('month', 1, DATE_MIN)
         const order = ordDate.compare(date, oneMonthAfterEarliestRepresenableDate)
-        match(order)
+        switch (order) {
           // when the start of month containing our date is before the
           // earliest-representable date, the start of the month should be
           // 'Invalid Date'
-          .with(-1, () => {
+          case -1:
             assert.ok(!isValidDate(reset))
-          })
-          .otherwise(() => {
+            break
+          default:
             assert.equal(1, reset.getUTCDate())
             assert.equal(0, reset.getUTCHours())
             assert.equal(0, reset.getUTCMinutes())
             assert.equal(0, reset.getUTCSeconds())
             assert.equal(0, reset.getUTCMilliseconds())
-          })
+        }
       },
     ),
     {
