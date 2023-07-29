@@ -2,7 +2,6 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 import fc from 'fast-check'
-import { Ord as ordDate } from 'fp-ts/Date'
 
 import { not, includedIn } from './util'
 import { resetableUnitsOfTime } from '../../src/unit-of-time'
@@ -18,6 +17,18 @@ import { startOf } from '../../src/start-of'
 
 function isValidDate(date: Date): boolean {
   return !Number.isNaN(date.getTime())
+}
+
+function compareDate(a: Date, b: Date): -1 | 0 | 1 {
+  const x = a.getTime()
+  const y = b.getTime()
+  if (x < y) {
+    return -1
+  }
+  if (x === y) {
+    return 0
+  }
+  return 1
 }
 
 /*********************************************************************
@@ -86,7 +97,7 @@ test('should set days to zero after winding date back to start-of week', () => {
     fc.property(fc.date(), (date) => {
       const reset = startOf('week', date)
       const oneWeekAfterEarliestRepresentableDate = add('week', 1, DATE_MIN)
-      const order = ordDate.compare(date, oneWeekAfterEarliestRepresentableDate)
+      const order = compareDate(date, oneWeekAfterEarliestRepresentableDate)
       switch (order) {
         // when the start of week containing our date is before the
         // earliest-representable date, the start of week should be
@@ -118,7 +129,7 @@ test('should set date to zero after winding date back to start-of month', () => 
       (date) => {
         const reset = startOf('month', date)
         const oneMonthAfterEarliestRepresenableDate = add('month', 1, DATE_MIN)
-        const order = ordDate.compare(date, oneMonthAfterEarliestRepresenableDate)
+        const order = compareDate(date, oneMonthAfterEarliestRepresenableDate)
         switch (order) {
           // when the start of month containing our date is before the
           // earliest-representable date, the start of the month should be
