@@ -31,7 +31,7 @@
     "@types/benchmark": "2.1.5",
     "@types/node": "20.14.2",
     "benchmark": "2.1.4",
-    "c8": "9.1.0",
+    "c8": "10.1.2",
     "fast-check": "3.19.0",
     "microtime": "3.1.1",
     "size-limit": "11.1.4",
