@@ -1,6 +1,6 @@
-import { curry } from './curry'
-import { parseDate } from './parse'
-import { AccessibleUnitOfTime, accessibleUnitsOfTime } from './unit-of-time'
+import { curry } from './curry.js'
+import { parseDate } from './parse.js'
+import { AccessibleUnitOfTime, accessibleUnitsOfTime } from './unit-of-time.js'
 
 export const get = curry(function get(
   unit: AccessibleUnitOfTime,
