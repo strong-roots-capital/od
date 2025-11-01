@@ -3,7 +3,7 @@
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
+    "module": "node20",
     "lib": ["dom", "es2021"],
     "declaration": true,
     "declarationMap": true,
@@ -11,6 +11,15 @@
     "outDir": "./lib",
     "downlevelIteration": true,
     "removeComments": true,
+    "exactOptionalPropertyTypes": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "strict": true,
     "esModuleInterop": true
   }
