@@ -1,6 +1,6 @@
-import { curry } from './curry'
-import { parseNumber, parseDate } from './parse'
-import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
+import { curry } from './curry.js'
+import { parseNumber, parseDate } from './parse.js'
+import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time.js'
 
 /**
  * Returns `NaN` when `date` is in the last-representable month,

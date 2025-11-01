@@ -1,6 +1,6 @@
-import { curry } from './curry'
-import { parseDate } from './parse'
-import { ResetableUnitOfTime, resetableUnitsOfTime } from './unit-of-time'
+import { curry } from './curry.js'
+import { parseDate } from './parse.js'
+import { ResetableUnitOfTime, resetableUnitsOfTime } from './unit-of-time.js'
 
 export const startOf = curry(function startOf(
   unit: ResetableUnitOfTime,
