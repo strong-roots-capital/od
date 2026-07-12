@@ -14,7 +14,7 @@ on:
 
 jobs:
   release:
-    uses: semantic-release-action/typescript/.github/workflows/release.yml@v3
+    uses: semantic-release-action/typescript/.github/workflows/release.yml@v4
     with:
       test-node-versions: "['lts/*']"
     secrets:
