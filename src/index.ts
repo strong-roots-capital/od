@@ -3,12 +3,12 @@
  * Oh dear, another date library
  */
 
-import { of } from './of'
-import { get } from './get'
-import { add } from './add'
-import { subtract } from './subtract'
-import { startOf } from './start-of'
-import { distance } from './distance'
+import { of } from './of.js'
+import { get } from './get.js'
+import { add } from './add.js'
+import { subtract } from './subtract.js'
+import { startOf } from './start-of.js'
+import { distance } from './distance.js'
 
 type D = {
   of: typeof of

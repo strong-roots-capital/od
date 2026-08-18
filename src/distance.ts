@@ -1,7 +1,7 @@
-import { get } from './get'
-import { curry } from './curry'
-import { parseDate } from './parse'
-import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time'
+import { get } from './get.js'
+import { curry } from './curry.js'
+import { parseDate } from './parse.js'
+import { UnitOfTime, unitsOfTime, millisecondsPer } from './unit-of-time.js'
 
 export const distance = curry(function distance(
   unit: UnitOfTime,

@@ -1,4 +1,4 @@
-import { has } from './parse'
+import { has } from './parse.js'
 
 export type DateDescriptor =
   | { year: number }
