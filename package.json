@@ -33,7 +33,7 @@
     "benchmark": "2.1.4",
     "c8": "11.0.0",
     "fast-check": "3.23.2",
-    "microtime": "3.1.1",
+    "microtime": "4.0.1",
     "size-limit": "11.2.0",
     "ts-node": "10.9.2",
     "tslib": "2.9.1",
