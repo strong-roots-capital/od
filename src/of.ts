@@ -3,7 +3,7 @@ import {
   dateStringAsDate,
   DateDescriptor,
   isDateDescriptor,
-} from './date-descriptor'
+} from './date-descriptor.js'
 
 export function isDatestringInFormatISO(datestring: string): boolean {
   return /^[-+]?(?:\d{2})?\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(datestring)
